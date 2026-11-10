@@ -7,6 +7,7 @@ Monorepo pnpm + Turborepo. Deploy na Vercel. Dev solo: 10 h/semana, 1 card = 1 P
 ## Idioma
 - Converse comigo em português.
 - Código, nomes, testes, commits, título e descrição de PR em inglês.
+- Textos (specs, ADRs, READMEs, `docs/`) em português.
 
 ## Contexto sob demanda (economia de token)
 - NÃO leia o repositório inteiro. Comece por `docs/context/INDEX.md`. Ele diz quais arquivos ler para cada tipo de tarefa.
@@ -27,7 +28,7 @@ Monorepo pnpm + Turborepo. Deploy na Vercel. Dev solo: 10 h/semana, 1 card = 1 P
 Nunca diga "pronto" sem lint, typecheck e testes verdes e sem eu ter visto o diff.
 
 ## Limites de PR
-- No máximo **20 arquivos alterados por PR** (lockfile e arquivos gerados não contam). Passou disso, pare e proponha como dividir.
+- No máximo **20 arquivos alterados por PR**. Não contam: lockfile, `database.types.ts` e outros gerados, `.changeset/`, `README.md`, e arquivos de controle (`CLAUDE.md`, `docs/context/INDEX.md`, `.claude/`). Passou disso, pare e proponha como dividir.
 - Uma PR = um card. Nada de "aproveitei e mudei X".
 
 ## Código
@@ -42,7 +43,7 @@ Nunca diga "pronto" sem lint, typecheck e testes verdes e sem eu ter visto o dif
 ## Banco e segurança (não negociável)
 - Toda tabela nova nasce com RLS habilitada, policies e um teste pgTAP que prove o isolamento (cliente A não lê projeto B).
 - Migrations só via `supabase/migrations`. Nunca altere o banco de produção pelo MCP; o MCP do Supabase roda em `read_only`.
-- Segredos só em variável de ambiente. Nunca leia nem escreva `.env*`.
+- Segredos só em variável de ambiente. Nunca leia nem escreva `.env*`, exceto `.env.example` (só nomes de variáveis e valores fictícios), que deve ser atualizado quando o card criar uma variável nova.
 
 ## UI (Seixu)
 - Tokens em `packages/seixu`. Nunca use cor literal em componente.
@@ -62,4 +63,5 @@ Nunca diga "pronto" sem lint, typecheck e testes verdes e sem eu ter visto o dif
 
 ## Git
 - Branch: `feat|fix|chore/<sprint>-<slug>` (ex.: `feat/s0-monorepo-scaffold`).
-- Conventional Commits em inglês. Changesets quando mexer em `packages/*`.
+- Conventional Commits em inglês.
+- Pacotes de `packages/*` são internos e não são publicados. Changesets ainda não está instalado (card NOS-7); até lá, não crie changeset.
