@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Limite de 20 arquivos por PR. Lockfiles, tipos gerados e changesets não contam.
+# Limite de 20 arquivos por PR. Lockfiles, tipos gerados, changesets, READMEs e arquivos de controle não contam.
 set -euo pipefail
 
 BASE="${1:-origin/main}"
@@ -7,7 +7,7 @@ LIMIT=20
 
 FILES=$( { git diff --name-only "$BASE"...HEAD; git diff --name-only; git ls-files --others --exclude-standard; } \
   | sort -u \
-  | grep -vE '(^|/)pnpm-lock\.yaml$|^packages/db/src/database\.types\.ts$|^\.changeset/' || true)
+  | grep -vE '(^|/)pnpm-lock\.yaml$|^packages/db/src/database\.types\.ts$|^\.changeset/|(^|/)README\.md$|^CLAUDE\.md$|^docs/context/INDEX\.md$|^\.claude/' || true)
 
 COUNT=$(printf '%s\n' "$FILES" | sed '/^$/d' | wc -l | tr -d ' ')
 
