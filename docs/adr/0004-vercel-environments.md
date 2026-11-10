@@ -3,12 +3,12 @@
 **Status:** Aceita · **Data:** 2026-11-10
 
 ## Contexto
-A integração do Supabase com a Vercel injetava as 16 chaves do `nos-dev` (inclusive service role, JWT secret e senha do Postgres) em Preview e Production ao mesmo tempo. Preview não pode enxergar produção, e chave privilegiada não deve estar onde o app não precisa dela.
+A integração do Supabase com a Vercel injetava as 16 chaves do `nos-dev` (inclusive service role, JWT secret e senha do Postgres) em Preview e Production ao mesmo tempo. Production não pode apontar para o dev, Preview nunca deve receber valor de produção, e chave privilegiada não deve estar onde o app não precisa dela.
 
 ## Decisão
-- Projeto `nos-plataforma` com Root Directory `apps/web`. A Vercel infere o `turbo build` filtrado; não há `vercel.json`.
+- Projeto `nos-plataforma` com Root Directory `apps/web`. A Vercel detecta o Turbo e roda `turbo run build` filtrado no `web`; não há `vercel.json`.
 - Install: `bun install --frozen-lockfile`. Build e output: detectados (Next.js).
-- Funções em `gru1` (São Paulo), perto do Supabase em `sa-east-1`.
+- Funções em `gru1` (São Paulo), perto do Supabase em `sa-east-1` (região exigida pela spec do NOS-2 para `nos-dev` e `nos-prod`).
 - A integração do Supabase sai do projeto. As variáveis são criadas à mão, só as que o app lê:
   - Preview e Development: `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` do `nos-dev`.
   - Production: as mesmas chaves do `nos-prod`, adicionadas no NOS-2.
