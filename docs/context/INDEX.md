@@ -12,7 +12,7 @@ Mapa de "o que ler para cada tarefa". Funciona como o RAG do projeto: o Claude c
 | Tipos do banco | `packages/db/src/database.types.ts` (gerado, leia só a tabela) | supabase cli gen types |
 | UI e tokens | `packages/seixu/src/tokens.css`, `packages/seixu/README.md` | tailwindcss v4 |
 | CI | `.github/workflows/ci.yml` | github actions |
-| Deploy e envs | `docs/adr/0001-stack.md` | vercel |
+| Deploy e envs | `docs/adr/0004-vercel-environments.md` | vercel |
 | Decisões passadas | `docs/adr/` (só os títulos; abra o ADR citado) | — |
 
 ## Fontes de verdade fora do repo
