@@ -11,7 +11,7 @@ Mapa de "o que ler para cada tarefa". Funciona como o RAG do projeto: o Claude c
 | Banco, migrations, RLS | `supabase/migrations/` (só as últimas 2), `supabase/tests/` | supabase rls, pgtap |
 | Tipos do banco | `packages/db/src/database.types.ts` (gerado, leia só a tabela) | supabase cli gen types |
 | UI e tokens | `packages/seixu/src/tokens.css`, `packages/seixu/README.md` | tailwindcss v4 |
-| CI | `.github/workflows/ci.yml` | github actions |
+| CI e lint | `.github/workflows/ci.yml`, `eslint.config.mjs`, `docs/adr/0005-typescript-6-for-lint.md` | github actions, typescript-eslint |
 | Deploy e envs | `docs/adr/0004-vercel-environments.md` | vercel |
 | Decisões passadas | `docs/adr/` (só os títulos; abra o ADR citado) | — |
 
