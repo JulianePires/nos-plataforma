@@ -7,7 +7,7 @@ LIMIT=20
 
 FILES=$( { git diff --name-only "$BASE"...HEAD; git diff --name-only; git ls-files --others --exclude-standard; } \
   | sort -u \
-  | grep -vE '(^|/)pnpm-lock\.yaml$|^packages/db/src/database\.types\.ts$|^\.changeset/|(^|/)README\.md$|^CLAUDE\.md$|^docs/context/INDEX\.md$|^\.claude/' || true)
+  | grep -vE '(^|/)bun\.lock$|^packages/db/src/database\.types\.ts$|^\.changeset/|(^|/)README\.md$|^CLAUDE\.md$|^docs/context/INDEX\.md$|^\.claude/' || true)
 
 COUNT=$(printf '%s\n' "$FILES" | sed '/^$/d' | wc -l | tr -d ' ')
 

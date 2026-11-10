@@ -36,7 +36,7 @@ Funcionalidade: Kit do Claude Code no repositório
     Então o script termina com erro e lista os arquivos
 
   Cenário: Lockfile não conta no limite
-    Dado uma branch com 20 arquivos alterados e o "pnpm-lock.yaml"
+    Dado uma branch com 20 arquivos alterados e o "bun.lock"
     Quando eu rodo "scripts/check-pr-size.sh"
     Então o script termina com sucesso e mostra "20/20"
 ```

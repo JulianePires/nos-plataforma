@@ -6,16 +6,16 @@
 O monorepo usa Changesets para versionar e registrar mudanças em `packages/*`, sem publicar nada no npm.
 
 ## Contexto
-- `package.json`, `pnpm-workspace.yaml`, `packages/*/package.json`, `.github/workflows/ci.yml`
+- `package.json`, `packages/*/package.json`, `.github/workflows/ci.yml`
 
 ## Referências (context7)
-- changesets (config para pacotes privados, `privatePackages`), pnpm workspaces
+- changesets (config para pacotes privados, `privatePackages`), bun workspaces
 
 ## Requisitos
 - `@changesets/cli` como devDependency da raiz, com `.changeset/config.json` inicializado.
 - Pacotes internos continuam com `"private": true`. Nenhum passo de publish.
 - Versão e changelog gerados para pacotes privados (`privatePackages.version: true`, `tag: false`).
-- Script `pnpm changeset` na raiz.
+- Script `bun run changeset` na raiz.
 - `CLAUDE.md` volta a exigir changeset quando a PR mexer em `packages/*`.
 
 ## Fora de escopo
@@ -27,19 +27,19 @@ Funcionalidade: Versionamento de pacotes internos
 
   Cenário: Mudança num pacote interno gera changelog
     Dado um changeset que altera "packages/seixu" com bump patch
-    Quando eu rodo "pnpm changeset version"
+    Quando eu rodo "bun run changeset version"
     Então a versão de "packages/seixu" sobe um patch
     E "packages/seixu/CHANGELOG.md" registra a mudança
 
   Cenário: Nada é publicado
     Dado que todos os pacotes de "packages/*" são privados
-    Quando eu rodo "pnpm changeset publish --dry-run"
+    Quando eu rodo "bun run changeset publish --dry-run"
     Então nenhum pacote é publicado
 ```
 
 ## Critérios de aceite
-- [ ] `pnpm changeset` cria um arquivo em `.changeset/`.
-- [ ] `pnpm changeset version` atualiza versão e CHANGELOG do pacote afetado.
+- [ ] `bun run changeset` cria um arquivo em `.changeset/`.
+- [ ] `bun run changeset version` atualiza versão e CHANGELOG do pacote afetado.
 - [ ] Nenhum pacote sem `"private": true`.
 
 ## Plano de testes (TDD)

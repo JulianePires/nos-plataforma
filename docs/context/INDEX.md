@@ -5,7 +5,7 @@ Mapa de "o que ler para cada tarefa". Funciona como o RAG do projeto: o Claude c
 | Tarefa | Leia | Docs externas (context7) |
 | --- | --- | --- |
 | Qualquer card | `CLAUDE.md`, a spec do card | — |
-| Monorepo, scripts, build | `package.json`, `turbo.json`, `pnpm-workspace.yaml` | turborepo, pnpm |
+| Monorepo, scripts, build | `package.json`, `turbo.json` | turborepo, bun |
 | Rotas e páginas | `apps/web/app/**/layout.tsx` do grupo afetado | next.js (app router) |
 | Feature de um módulo | `apps/web/features/<módulo>/` | next.js server actions, zod |
 | Banco, migrations, RLS | `supabase/migrations/` (só as últimas 2), `supabase/tests/` | supabase rls, pgtap |
@@ -22,4 +22,4 @@ Mapa de "o que ler para cada tarefa". Funciona como o RAG do projeto: o Claude c
 - Seixu (Figma Make): `186t0PDVG4qObWpY6v4WUP`, via MCP figma, só quando a spec pedir
 
 ## Não ler (gasta token e não ajuda)
-`node_modules/`, `.next/`, `.turbo/`, `pnpm-lock.yaml`, `coverage/`, `*.snap`, migrations antigas que a tarefa não toca.
+`node_modules/`, `.next/`, `.turbo/`, `bun.lock`, `coverage/`, `*.snap`, migrations antigas que a tarefa não toca.

@@ -35,7 +35,7 @@ Funcionalidade: Componentes base do Seixu
 
   Cenário: Input sem label não compila
     Dado um <Input /> sem a prop "label"
-    Então "pnpm typecheck" falha
+    Então "bun run typecheck" falha
 
   Cenário: Botão acessível pelo teclado
     Dado a página "/seixu"

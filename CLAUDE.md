@@ -2,7 +2,7 @@
 
 Plataforma da Nós Tecnologia Desenvolvimento Criativo: console interno + portal do cliente.
 Stack: Next.js (App Router) + Supabase (Auth, Postgres/RLS, Realtime, Storage) + Tailwind v4 + Seixu.
-Monorepo pnpm + Turborepo. Deploy na Vercel. Dev solo: 10 h/semana, 1 card = 1 PR.
+Monorepo Bun + Turborepo. Deploy na Vercel. Dev solo: 10 h/semana, 1 card = 1 PR.
 
 ## Idioma
 - Converse comigo em português.
@@ -57,7 +57,7 @@ Nunca diga "pronto" sem lint, typecheck e testes verdes e sem eu ter visto o dif
 - Atualize `docs/context/INDEX.md` quando criar uma área nova do código.
 
 ## Comandos
-- `pnpm dev` · `pnpm lint` · `pnpm typecheck` · `pnpm test` · `pnpm test:e2e`
+- `bun run dev` · `bun run lint` · `bun run typecheck` · `bun run test` · `bun run test:e2e`
 - `supabase start` · `supabase db reset` · `supabase test db`
 - `scripts/check-pr-size.sh` (limite de 20 arquivos)
 

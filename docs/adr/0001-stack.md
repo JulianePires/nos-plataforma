@@ -6,7 +6,7 @@
 Dev solo, 10 h/semana, um app com console interno e portal do cliente. O isolamento entre clientes precisa ser garantido no banco. O piloto com cliente real é em 11/01/2027.
 
 ## Decisão
-- Next.js (App Router) num monorepo pnpm + Turborepo: `apps/web` + `packages/{seixu,pricing,db}`
+- Next.js (App Router) num monorepo pnpm + Turborepo (gerenciador substituído por Bun no ADR 0003): `apps/web` + `packages/{seixu,pricing,db}`
 - Supabase: Auth (Google para a equipe, magic link para clientes), Postgres com RLS, Realtime e Storage
 - Tailwind v4 com os tokens do Seixu; Zod nas bordas; Vitest, Playwright e pgTAP
 - Vercel com preview por PR. Hobby e Free no desenvolvimento; Pro em produção a partir da S6 (o Hobby não permite uso comercial)
