@@ -15,7 +15,7 @@ O Supabase roda localmente, os projetos `nos-dev` e `nos-prod` existem, e os tip
 - Você cria `nos-dev` e `nos-prod` no painel do Supabase (região São Paulo, `sa-east-1`).
 - `supabase init` na raiz; `supabase/config.toml` versionado.
 - Migration inicial vazia de propósito (`0000_init.sql` só com `create extension if not exists pgtap`).
-- Script `pnpm db:types` que gera `packages/db/src/database.types.ts` a partir do banco local.
+- Script `bun run db:types` que gera `packages/db/src/database.types.ts` a partir do banco local.
 - `apps/web/lib/supabase/{server,client}.ts` com `@supabase/ssr`, lendo `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` validadas por Zod em `lib/env.ts`.
 - `.env.example` atualizado com as variáveis novas.
 
@@ -37,8 +37,8 @@ Funcionalidade: Banco disponível para o app
     Então ele falha com uma mensagem que nomeia a variável
 
   Cenário: Tipos gerados
-    Quando eu rodo "pnpm db:types"
-    Então "packages/db/src/database.types.ts" é recriado e "pnpm typecheck" passa
+    Quando eu rodo "bun run db:types"
+    Então "packages/db/src/database.types.ts" é recriado e "bun run typecheck" passa
 ```
 
 ## Critérios de aceite
