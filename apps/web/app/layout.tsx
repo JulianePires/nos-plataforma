@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Nós Plataforma",
@@ -11,8 +12,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      {/* Without globals.css the browser default font is serif; Tailwind replaces this in NOS-3. */}
-      <body style={{ fontFamily: "system-ui, sans-serif" }}>{children}</body>
+      <body className="font-sans">{children}</body>
     </html>
   );
 }

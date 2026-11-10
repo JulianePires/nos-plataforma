@@ -17,7 +17,8 @@ bun run dev                  # http://localhost:3000
 | `bun run dev` | Sobe o app em modo desenvolvimento |
 | `bun run build` | Build de produção |
 | `bun run lint` | ESLint em todos os workspaces |
-| `bun run check-types` | TypeScript em todos os workspaces |
+| `bun run typecheck` | TypeScript em todos os workspaces |
+| `bun run test` | Testes (Vitest) em todos os workspaces |
 | `bash scripts/check-pr-size.sh` | Confere o limite de 20 arquivos por PR |
 
 ## Estrutura

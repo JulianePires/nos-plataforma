@@ -1,6 +1,6 @@
 # 0002 · Pacotes internos sem build próprio (just-in-time)
 
-**Status:** Proposta (passa a Aceita no NOS-3) · **Data:** 2026-11-10
+**Status:** Aceita · **Data:** 2026-11-10
 
 ## Contexto
 `packages/{seixu,pricing,db}` são internos e não são publicados (ADR 0001). Um passo de build por pacote soma config e tempo para uma pessoa só manter.
