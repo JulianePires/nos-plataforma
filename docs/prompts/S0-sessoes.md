@@ -116,7 +116,7 @@ O item de permissões (`.claude/settings.json`) é editado por você.
 /clear
 /card docs/specs/S0/11-local-dev-env.md
 ```
-Fora do repo, você deixa Preview e Development na Vercel só com `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` do `nos-prod` e renomeia a variável do MCP para `SUPABASE_PROD_PROJECT_REF` (com o ref do `nos-prod`) no seu `.env.local`. Depois, exporte a variável e reinicie o `claude` (ou rode `/mcp`): o processo em execução não lê o `.env.local` de novo. Mudou variável na Vercel, faça um deploy novo do preview: `NEXT_PUBLIC_*` entra no build.
+Fora do repo, você deixa o Preview na Vercel só com `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` do `nos-prod`, tira as variáveis do Supabase do Development e renomeia a variável do MCP para `SUPABASE_PROD_PROJECT_REF` (com o ref do `nos-prod`) no seu `.env.local`. Depois, exporte a variável e reinicie o `claude` (ou rode `/mcp`): o processo em execução não lê o `.env.local` de novo. Mudou variável na Vercel, faça um deploy novo do preview: `NEXT_PUBLIC_*` entra no build.
 
 **Card 08 · Biome**
 ```text

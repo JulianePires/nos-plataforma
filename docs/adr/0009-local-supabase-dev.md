@@ -7,7 +7,8 @@ O plano gratuito do Supabase não comporta `nos-dev` e `nos-prod` ao mesmo tempo
 
 ## Decisão
 - O ambiente de dev é só o Supabase local em Docker. O único projeto hospedado é o `nos-prod`.
-- Preview e Development na Vercel usam `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` do `nos-prod`, e nenhuma outra chave do Supabase. Isso altera o ADR 0004, que proibia valor de produção em Preview.
+- Preview na Vercel usa `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` do `nos-prod`, e nenhuma outra chave do Supabase. Isso altera o ADR 0004, que proibia valor de produção em Preview.
+- Development na Vercel fica sem variáveis do Supabase: o dev roda com o `.env.local` apontando para o Supabase local (`supabase start`), e `vercel env pull`/`vercel dev` nunca trazem chave de produção.
 - O fail-fast do env no boot continua igual em todos os ambientes.
 - O MCP do Supabase aponta para o `nos-prod` em `read_only` (`SUPABASE_PROD_PROJECT_REF`).
 

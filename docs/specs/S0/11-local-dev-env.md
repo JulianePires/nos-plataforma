@@ -14,7 +14,7 @@ O ambiente de dev é só o Supabase local em Docker, o Preview da Vercel usa as 
 
 ## Requisitos
 - Origem: backlog, item do NOS-9. O plano gratuito do Supabase não comporta `nos-dev` e `nos-prod`. O dev passa a ser o `supabase start`.
-- Vercel (feito por você): Preview e Development com `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` do `nos-prod`, e nenhuma outra chave do Supabase. Depois de mudar as variáveis, faça um deploy novo do preview: `NEXT_PUBLIC_*` entra no build, e o deploy antigo continua com os valores velhos.
+- Vercel (feito por você): Preview com `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` do `nos-prod`, e nenhuma outra chave do Supabase; Development sem variável do Supabase (o dev usa o banco local pelo `.env.local`). Depois de mudar as variáveis, faça um deploy novo do preview: `NEXT_PUBLIC_*` entra no build, e o deploy antigo continua com os valores velhos.
 - O fail-fast do env no boot não muda: vale em todos os ambientes.
 - MCP do Supabase aponta para o `nos-prod` em `read_only`: a variável do project ref vira `SUPABASE_PROD_PROJECT_REF` no `.mcp.json`, no `.env.example` e na instalação do kit (`docs/prompts/00-prompt-inicial.md`). Você atualiza o seu `.env.local`.
 - ADR 0009 novo (Supabase local como dev, Preview no `nos-prod`). ADR 0004 atualizado: deixa de proibir valor de produção em Preview, mantém a proibição de chave privilegiada.
@@ -40,7 +40,7 @@ Funcionalidade: Preview no banco de produção
 
 ## Critérios de aceite
 - [ ] Preview do PR deste card responde 200 (evidência: URL no PR)
-- [ ] Variáveis de Preview e Development na Vercel conferidas: só URL e anon key do `nos-prod`
+- [ ] Variáveis na Vercel conferidas: Preview só com URL e anon key do `nos-prod`; Development sem variável do Supabase
 - [ ] Nenhum doc trata o `nos-dev` como ambiente atual; menções a ele são histórico ou nota do NOS-11
 - [ ] ADR 0009 com status Aceita; ADR 0004 atualizado
 - [ ] MCP do Supabase conectado ao `nos-prod` em `read_only` depois de você atualizar o `.env.local`

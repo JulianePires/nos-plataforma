@@ -10,8 +10,9 @@ A integração do Supabase com a Vercel injetava as 16 chaves do `nos-dev` (incl
 - Install: `bun install --frozen-lockfile`. Build e output: detectados (Next.js).
 - Funções em `gru1` (São Paulo), perto do Supabase em `sa-east-1` (região exigida pela spec do NOS-2 para `nos-dev` e `nos-prod`).
 - A integração do Supabase sai do projeto. As variáveis são criadas à mão, só as que o app lê:
-  - Production, Preview e Development: `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` do `nos-prod` (ADR 0009, NOS-11). Até o NOS-11, Preview e Development usavam as chaves do `nos-dev`, que deixou de existir.
-  - Preview e Development recebem só essas duas chaves públicas do `nos-prod`, nunca chave privilegiada.
+  - Production e Preview: `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` do `nos-prod` (ADR 0009, NOS-11). Até o NOS-11, Preview e Development usavam as chaves do `nos-dev`, que deixou de existir.
+  - Preview recebe só essas duas chaves públicas do `nos-prod`, nunca chave privilegiada.
+  - Development: nenhuma variável do Supabase; o dev usa o Supabase local pelo `.env.local` (ADR 0009).
 - Chave de servidor (service role/secret) só entra quando um card precisar dela, e só no ambiente que a usa.
 - Vercel Authentication continua ligado nos previews.
 
