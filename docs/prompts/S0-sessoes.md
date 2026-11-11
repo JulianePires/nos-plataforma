@@ -87,6 +87,17 @@ Use o MCP figma só para ler os tokens do arquivo Make 186t0PDVG4qObWpY6v4WUP (s
 
 ---
 
+## Antes da S1 · Ferramentas
+
+**Card 08 · Biome**
+```text
+/clear
+/card docs/specs/S0/08-biome.md
+```
+Roda depois do card 04 e antes do primeiro card da S1, para o código novo já nascer formatado pelo Biome.
+
+---
+
 ## Fechamento da sprint
 ```text
 /clear
