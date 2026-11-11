@@ -42,9 +42,9 @@ Funcionalidade: Monorepo funcional
 ```
 
 ## Critérios de aceite
-- [ ] `bun install && bun run build` limpo, sem warnings de peer dependency
-- [ ] As 3 rotas placeholder respondem: `/`, `/portal`, `/vitrine` (ou nomes propostos no plano)
-- [ ] Nenhum arquivo de exemplo do create-next-app sobrando (logo, CSS de demo)
+- [x] `bun install && bun run build` limpo, sem warnings de peer dependency
+- [x] As 3 rotas placeholder respondem: `/`, `/portal`, `/vitrine` (ou nomes propostos no plano)
+- [x] Nenhum arquivo de exemplo do create-next-app sobrando (logo, CSS de demo)
 
 ## Plano de testes (TDD)
 | Cenário | Tipo | Arquivo |

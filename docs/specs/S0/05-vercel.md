@@ -35,8 +35,8 @@ Funcionalidade: Deploy contínuo
 ```
 
 ## Critérios de aceite
-- [ ] URL de preview no PR deste card
-- [ ] Nenhuma variável de produção exposta em Preview
+- [x] URL de preview no PR deste card
+- [x] Nenhuma variável de produção exposta em Preview
 
 ## Plano de testes (TDD)
 | Cenário | Tipo | Arquivo |

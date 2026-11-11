@@ -10,7 +10,7 @@ Por padrão, toda tabela, view ou função criada em `public` fica acessível à
 - Toda migration que cria tabela faz, nesta ordem: `enable row level security`, as policies e o `grant` explícito só para a role e as operações que a tela usa.
 - O teste pgTAP do isolamento cobre também a role sem GRANT (deve falhar ao ler).
 - Extensões ficam fora de `public` (`with schema extensions`); pgTAP não aparece na API nem nos tipos gerados.
-- O `config.toml` só vale para o banco local. Antes da primeira tabela da S1, `nos-dev` e `nos-prod` precisam do mesmo comportamento (configuração da Data API no painel ou `alter default privileges ... revoke` numa migration); isso entra no plano desse card.
+- O `config.toml` só vale para o banco local. Antes da primeira tabela da S1, `nos-dev` e `nos-prod` precisam do mesmo comportamento (configuração da Data API no painel ou `alter default privileges ... revoke` numa migration); isso é o card NOS-9 (`docs/specs/S0/09-api-grants.md`).
 
 ## Alternativas descartadas
 - Manter o padrão (`true`) e confiar na RLS: um esquecimento de `enable row level security` vira vazamento imediato.
