@@ -96,7 +96,7 @@ Ordem: 09 → 10 → 07 → 08. O 09 vem primeiro porque é segurança e libera 
 /clear
 /card docs/specs/S0/09-api-grants.md
 ```
-Você roda o `bunx supabase db push` em `nos-dev` e `nos-prod`; o Claude confere pelo MCP em `read_only`.
+Antes do `/card`, você aplica o pré-requisito de permissões da spec (negar `db push` e `link` via `bunx`/`npx`). Você roda o `bunx supabase link` e o `db push` em `nos-dev` e `nos-prod`; o Claude confere pelo MCP em `read_only`.
 
 **Card 10 · Pendências pequenas**
 ```text

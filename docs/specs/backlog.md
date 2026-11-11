@@ -11,4 +11,4 @@ Itens levantados durante a S0 que pertencem a sprints futuras. Cada um tem orige
 | pgTAP no CI (`bunx supabase test db`) | NOS-4 | S1 | Primeiro card com tabela |
 | Rever Vercel Authentication para abrir produção ao público, com domínio próprio | NOS-1 parte 2 (ADR 0004) | S6 | Card de domínio e plano Pro |
 | Playwright no CI | NOS-4 | S6 | Card de E2E |
-| Voltar a um TypeScript só quando o typescript-eslint suportar o tsgo | ADR 0005 | Sem data | Revisar a cada atualização do typescript-eslint |
+| Voltar a um TypeScript só quando o typescript-eslint suportar o tsgo | ADR 0005 | S1 (planejamento) | Checar o suporte no planejamento de cada sprint; se existir, vira card e o ADR 0005 é substituído |

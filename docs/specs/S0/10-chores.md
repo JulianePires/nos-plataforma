@@ -16,12 +16,12 @@ Fechar as pendências pequenas levantadas nos cards da S0, para a S1 começar se
 | --- | --- | --- | --- |
 | 1 | Ignorar `apps/web/AGENTS.md` e `apps/web/CLAUDE.md`, gerados pelo `next dev` quando roda sob agente | NOS-3 | `apps/web/.gitignore` |
 | 2 | Tirar `license` e `publishConfig` herdados do create-turbo (pacote é privado) | NOS-3 | `packages/typescript-config/package.json` |
-| 3 | `typecheck` do Turbo declara `inputs` com `packages/*/src/**`, para pacote novo não reaproveitar cache velho | NOS-4 | `turbo.json` |
+| 3 | `typecheck` do Turbo declara `inputs` com `$TURBO_DEFAULT$` e `$TURBO_ROOT$/packages/*/src/**` (globs de `inputs` são relativos ao pacote; `$TURBO_ROOT$` ancora na raiz), para pacote novo não reaproveitar cache velho | NOS-4 | `turbo.json` |
 | 4 | Comentário e mensagens do script em inglês (código em inglês, `CLAUDE.md`) | NOS-1 | `scripts/check-pr-size.sh`, `scripts/check-pr-size.test.sh` |
 | 5 | `db:types` grava num arquivo temporário e só troca o arquivo final se a geração der certo | NOS-2 | `package.json` (+ script em `scripts/` se precisar) |
 | 6 | Comandos do Supabase via `bunx supabase …` (a CLI é devDependency) | NOS-2 | `CLAUDE.md` |
 | 7 | Estrutura do README sem `packages/eslint-config` (removido) e com `supabase/` atual | NOS-3 | `README.md` |
-| 8 | Permissões: trocar `pnpm` por `bun`; bloquear também `bunx supabase db push`; tirar espaços sobrando | NOS-2 / ADR 0003 | `.claude/settings.json` (**você edita**: o Claude não altera regras de permissão) |
+| 8 | Permissões: trocar `pnpm` por `bun` e tirar espaços sobrando (o bloqueio de `db push`/`link` via `bunx`/`npx` já entra antes, como pré-requisito do NOS-9) | NOS-2 / ADR 0003 | `.claude/settings.json` (**você edita**: o Claude não altera regras de permissão) |
 
 ## Fora de escopo
 - Tudo o que está em `docs/specs/backlog.md` com sprint de destino (auth, domínio, publishable key).
@@ -44,15 +44,15 @@ Funcionalidade: S0 sem pendência pequena
     Quando eu rodo "bash scripts/check-pr-size.test.sh"
     Então os 4 cenários passam com as mensagens novas
 
-  Cenário: db push bloqueado em qualquer forma
-    Quando o Claude tenta "bunx supabase db push"
-    Então a permissão é negada
+  Cenário: Permissões sem pnpm
+    Quando eu leio ".claude/settings.json"
+    Então nenhuma regra cita "pnpm" e o JSON é válido
 ```
 
 ## Critérios de aceite
 - [ ] Os 8 itens feitos, cada um citado no PR
 - [ ] `bun run lint && bun run typecheck && bun run test` verdes; `scripts/check-pr-size.test.sh` verde
-- [ ] `.claude/settings.json` é JSON válido e nega `supabase db push` e `bunx supabase db push`
+- [ ] `.claude/settings.json` é JSON válido e sem regra de `pnpm`
 
 ## Plano de testes (TDD)
 | Cenário | Tipo | Arquivo |
