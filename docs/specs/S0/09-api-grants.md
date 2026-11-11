@@ -54,11 +54,11 @@ Funcionalidade: Objeto novo fica fora da API
 ```
 
 ## Critérios de aceite
-- [ ] Pré-requisito de permissões aplicado: `.claude/settings.json` válido e negando `db push` e `link` via `supabase`, `bunx` e `npx`
-- [ ] `bunx supabase test db` verde localmente com o teste novo
-- [ ] Migration aplicada em `nos-prod` (evidência: `bunx supabase migration list --remote`)
-- [ ] `nos-prod` conferido pelo MCP `read_only`
-- [ ] ADR 0007 atualizado
+- [x] Pré-requisito de permissões aplicado: `.claude/settings.json` válido e negando `db push` e `link` via `supabase`, `bunx` e `npx`
+- [x] `bunx supabase test db` verde localmente com o teste novo
+- [x] Migration aplicada em `nos-prod` (evidência: `bunx supabase migration list --remote`)
+- [x] `nos-prod` conferido pelo MCP `read_only`
+- [x] ADR 0007 atualizado
 
 ## Plano de testes (TDD)
 | Cenário | Tipo | Arquivo |

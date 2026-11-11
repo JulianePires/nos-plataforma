@@ -39,11 +39,11 @@ Funcionalidade: Preview no banco de produção
 ```
 
 ## Critérios de aceite
-- [ ] Preview do PR deste card responde 200 (evidência: URL no PR)
-- [ ] Variáveis na Vercel conferidas: Preview só com URL e anon key do `nos-prod`; Development sem variável do Supabase
-- [ ] Nenhum doc trata o `nos-dev` como ambiente atual; menções a ele são histórico ou nota do NOS-11
-- [ ] ADR 0009 com status Aceita; ADR 0004 atualizado
-- [ ] MCP do Supabase conectado ao `nos-prod` em `read_only` depois de você atualizar o `.env.local`
+- [x] Preview do PR deste card responde 200 (evidência: URL no PR)
+- [x] Variáveis na Vercel conferidas: Preview só com URL e anon key do `nos-prod`; Development sem variável do Supabase
+- [x] Nenhum doc trata o `nos-dev` como ambiente atual; menções a ele são histórico ou nota do NOS-11
+- [x] ADR 0009 com status Aceita; ADR 0004 atualizado
+- [x] MCP do Supabase conectado ao `nos-prod` em `read_only` depois de você atualizar o `.env.local`
 
 ## Plano de testes (TDD)
 | Cenário | Tipo | Arquivo |

@@ -50,9 +50,9 @@ Funcionalidade: S0 sem pendência pequena
 ```
 
 ## Critérios de aceite
-- [ ] Os 8 itens feitos, cada um citado no PR
-- [ ] `bun run lint && bun run typecheck && bun run test` verdes; `scripts/check-pr-size.test.sh` verde
-- [ ] `.claude/settings.json` é JSON válido e sem regra de `pnpm`
+- [x] Os 8 itens feitos, cada um citado no PR
+- [x] `bun run lint && bun run typecheck && bun run test` verdes; `scripts/check-pr-size.test.sh` verde
+- [x] `.claude/settings.json` é JSON válido e sem regra de `pnpm`
 
 ## Plano de testes (TDD)
 | Cenário | Tipo | Arquivo |

@@ -3,10 +3,13 @@ name: ci
 on:
   pull_request:
     branches: [main]
+  push:
+    branches: [main]
 
 concurrency:
-  group: ci-${{ github.event.pull_request.number }}
-  cancel-in-progress: true
+  # Each push to main gets its own group and is never cancelled, so every merge keeps its own run.
+  group: ci-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: read
@@ -59,4 +62,5 @@ jobs:
         run: bun run test
 
       - name: PR size
+        if: github.event_name == 'pull_request'
         run: bash scripts/check-pr-size.sh origin/${{ github.base_ref }}
