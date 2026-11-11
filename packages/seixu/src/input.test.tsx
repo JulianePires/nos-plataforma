@@ -10,6 +10,11 @@ describe("Input", () => {
     render(<Input />);
   });
 
+  it("accepts only text-entry types at compile time", () => {
+    // @ts-expect-error checkbox, radio and file need their own components
+    render(<Input label="Aceito" type="checkbox" />);
+  });
+
   it("associates the label with the field", () => {
     render(<Input label="E-mail" type="email" />);
 
@@ -18,11 +23,11 @@ describe("Input", () => {
 
   it("styles the field only with tokens and a visible focus ring", () => {
     render(<Input label="Nome" />);
-    const { className } = screen.getByLabelText("Nome");
+    const element = screen.getByLabelText("Nome");
 
-    expect(className).toContain("bg-surface-2");
-    expect(className).toContain("focus-visible:outline-2");
-    expect(className).not.toMatch(HEX_COLOR);
+    expect(element).toHaveClass("bg-surface-2");
+    expect(element).toHaveClass("focus-visible:outline-2");
+    expect(element.className).not.toMatch(HEX_COLOR);
   });
 
   it("keeps a caller-provided id", () => {

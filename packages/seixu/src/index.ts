@@ -5,6 +5,6 @@ export {
   type ButtonSize,
   type ButtonVariant,
 } from "./button";
-export { Input, type InputProps } from "./input";
+export { Input, type InputProps, type InputType } from "./input";
 
 export const SEIXU_VERSION: string = "0.0.0";

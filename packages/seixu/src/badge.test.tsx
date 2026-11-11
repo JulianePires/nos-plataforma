@@ -14,15 +14,15 @@ describe("Badge", () => {
     ["red", "text-danger"],
   ] as const)("renders the %s tone with %s", (tone, expected) => {
     render(<Badge tone={tone}>Status</Badge>);
-    const { className } = screen.getByText("Status");
+    const element = screen.getByText("Status");
 
-    expect(className).toContain(expected);
-    expect(className).not.toMatch(HEX_COLOR);
+    expect(element).toHaveClass(expected);
+    expect(element.className).not.toMatch(HEX_COLOR);
   });
 
   it("defaults to the neutral tone", () => {
     render(<Badge>Rascunho</Badge>);
 
-    expect(screen.getByText("Rascunho").className).toContain("text-text-muted");
+    expect(screen.getByText("Rascunho")).toHaveClass("text-text-muted");
   });
 });

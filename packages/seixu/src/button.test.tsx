@@ -9,7 +9,7 @@ describe("Button", () => {
     render(<Button variant="primary">Salvar</Button>);
     const button = screen.getByRole("button", { name: "Salvar" });
 
-    expect(button.className).toContain("bg-action-primary");
+    expect(button).toHaveClass("bg-action-primary");
     expect(button.className).not.toMatch(HEX_COLOR);
   });
 
@@ -20,10 +20,10 @@ describe("Button", () => {
     ["danger", "bg-danger"],
   ] as const)("renders the %s variant with %s", (variant, expected) => {
     render(<Button variant={variant}>Ação</Button>);
-    const { className } = screen.getByRole("button");
+    const element = screen.getByRole("button");
 
-    expect(className).toContain(expected);
-    expect(className).not.toMatch(HEX_COLOR);
+    expect(element).toHaveClass(expected);
+    expect(element.className).not.toMatch(HEX_COLOR);
   });
 
   it.each([
@@ -32,23 +32,21 @@ describe("Button", () => {
   ] as const)("renders the %s size with %s", (size, expected) => {
     render(<Button size={size}>Ação</Button>);
 
-    expect(screen.getByRole("button").className).toContain(expected);
+    expect(screen.getByRole("button")).toHaveClass(expected);
   });
 
   it("defaults to primary, md and type button", () => {
     render(<Button>Ação</Button>);
     const button = screen.getByRole("button");
 
-    expect(button.className).toContain("bg-action-primary");
-    expect(button.className).toContain("h-10");
+    expect(button).toHaveClass("bg-action-primary");
+    expect(button).toHaveClass("h-10");
     expect(button).toHaveAttribute("type", "button");
   });
 
   it("shows a visible focus ring for keyboard users", () => {
     render(<Button>Salvar</Button>);
 
-    expect(screen.getByRole("button").className).toContain(
-      "focus-visible:outline-2",
-    );
+    expect(screen.getByRole("button")).toHaveClass("focus-visible:outline-2");
   });
 });

@@ -62,10 +62,11 @@ Use para status e rótulos curtos, nunca para ações.
 
 ### Input
 
-Use para campos de texto. O `label` é obrigatório no tipo, então um campo sem rótulo não compila.
+Use para campos de texto. O `label` é obrigatório no tipo, então um campo sem rótulo não compila. Checkbox, radio e file não são aceitos e terão componentes próprios.
 
-| Prop    | Tipo                  | Padrão      | Descrição                                  |
-| ------- | --------------------- | ----------- | ------------------------------------------ |
-| `label` | `string`              | obrigatório | Texto do `<label>` ligado ao campo         |
-| `id`    | `string`              | `useId()`   | Passe um `id` só se precisar referenciá-lo |
-| demais  | `InputHTMLAttributes` | —           | Repassadas ao `<input>`                    |
+| Prop    | Tipo                                                           | Padrão      | Descrição                                  |
+| ------- | -------------------------------------------------------------- | ----------- | ------------------------------------------ |
+| `label` | `string`                                                       | obrigatório | Texto do `<label>` ligado ao campo         |
+| `id`    | `string`                                                       | `useId()`   | Passe um `id` só se precisar referenciá-lo |
+| `type`  | `InputType`: text, email, password, search, tel, url ou number | `"text"`    | Só tipos de entrada de texto               |
+| demais  | `InputHTMLAttributes`                                          | —           | Repassadas ao `<input>`                    |

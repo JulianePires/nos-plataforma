@@ -1,8 +1,12 @@
 import { useId, type InputHTMLAttributes } from "react";
 import { cx } from "./cx";
 
-export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+export type InputType =
+  "text" | "email" | "password" | "search" | "tel" | "url" | "number";
+
+export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
   label: string;
+  type?: InputType;
 };
 
 const field =
