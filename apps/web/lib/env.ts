@@ -7,11 +7,17 @@ const publicEnvSchema = z.object({
 
 export type PublicEnv = z.infer<typeof publicEnvSchema>;
 
-export function parsePublicEnv(source: Record<keyof PublicEnv, string | undefined>): PublicEnv {
+export function parsePublicEnv(
+  source: Record<keyof PublicEnv, string | undefined>,
+): PublicEnv {
   const result = publicEnvSchema.safeParse(source);
   if (!result.success) {
-    const names = [...new Set(result.error.issues.map((issue) => String(issue.path[0])))];
-    throw new Error(`Invalid or missing environment variables: ${names.join(", ")}`);
+    const names = [
+      ...new Set(result.error.issues.map((issue) => String(issue.path[0]))),
+    ];
+    throw new Error(
+      `Invalid or missing environment variables: ${names.join(", ")}`,
+    );
   }
   return result.data;
 }

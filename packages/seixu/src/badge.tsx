@@ -2,7 +2,12 @@ import type { HTMLAttributes } from "react";
 import { cx } from "./cx";
 
 export type BadgeTone =
-  "neutral" | "blue" | "purple" | "brown" | "green" | "red";
+  | "neutral"
+  | "blue"
+  | "purple"
+  | "brown"
+  | "green"
+  | "red";
 
 export type BadgeProps = HTMLAttributes<HTMLSpanElement> & {
   tone?: BadgeTone;
