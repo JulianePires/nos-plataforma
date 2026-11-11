@@ -3,7 +3,7 @@
 **Status:** Aceita, atualizada pelo ADR 0009 (2026-11-11) · **Data:** 2026-11-10
 
 ## Contexto
-A integração do Supabase com a Vercel injetava as 16 chaves do `nos-dev` (inclusive service role, JWT secret e senha do Postgres) em Preview e Production ao mesmo tempo. Production não pode apontar para o dev, Preview nunca deve receber valor de produção, e chave privilegiada não deve estar onde o app não precisa dela.
+A integração do Supabase com a Vercel injetava as 16 chaves do `nos-dev` (inclusive service role, JWT secret e senha do Postgres) em Preview e Production ao mesmo tempo. Production não pode apontar para o dev, Preview nunca deveria receber valor de produção (regra revista pelo ADR 0009: Preview recebe só as chaves públicas do `nos-prod`), e chave privilegiada não deve estar onde o app não precisa dela.
 
 ## Decisão
 - Projeto `nos-plataforma` com Root Directory `apps/web`. A Vercel detecta o Turbo e roda `turbo run build` filtrado no `web`; não há `vercel.json`.
@@ -20,7 +20,7 @@ A integração do Supabase com a Vercel injetava as 16 chaves do `nos-dev` (incl
 - `vercel.json` com `outputDirectory`: resolve o build, mas duplica o que o Root Directory já resolve.
 
 ## Consequências
-- Desde o ADR 0009, Preview lê e escreve no banco de produção com a anon key; a RLS é a barreira e o Vercel Authentication limita quem abre o preview. Chave privilegiada nunca vai para Preview, e o vazamento fica limitado ao que foi adicionado de propósito.
+- Desde o ADR 0009, Preview lê e escreve no banco de produção com a anon key; a RLS é a barreira; o Vercel Authentication protege as páginas do preview, mas não a Data API: a anon key vai no bundle do navegador e qualquer um que a tenha fala direto com o `nos-prod`, como já acontece com a de produção. Chave privilegiada nunca vai para Preview, e o vazamento fica limitado ao que foi adicionado de propósito.
 - Rotação de chave no Supabase exige atualizar a variável na Vercel à mão.
 - Variável de servidor nova precisa entrar também no `env` do `turbo.json`, senão o Turbo a remove no build.
 

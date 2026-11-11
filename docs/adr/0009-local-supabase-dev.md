@@ -18,7 +18,7 @@ O plano gratuito do Supabase não comporta `nos-dev` e `nos-prod` ao mesmo tempo
 
 ## Consequências
 - Telas com dados funcionam no preview, com dados reais.
-- Código ainda em revisão lê e escreve em produção com a anon key: a RLS e o GRANT explícito (ADR 0007) são a única barreira, e o Vercel Authentication limita quem abre o preview. Um erro de policy numa PR aparece em dados de produção, não num banco descartável.
+- Código ainda em revisão lê e escreve em produção com a anon key: a RLS e o GRANT explícito (ADR 0007) são a única barreira; o Vercel Authentication protege as páginas do preview, mas não a Data API: a anon key vai no bundle do navegador e qualquer um que a tenha fala direto com o `nos-prod`, como já acontece com a de produção. Um erro de policy numa PR aparece em dados de produção, não num banco descartável.
 - Teste que escreve dados (seed, E2E) roda só no banco local, nunca contra um preview.
 - Quando houver plano pago, o Branching volta à mesa para isolar os previews.
 

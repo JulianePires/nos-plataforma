@@ -14,12 +14,12 @@ O ambiente de dev é só o Supabase local em Docker, o Preview da Vercel usa as 
 
 ## Requisitos
 - Origem: backlog, item do NOS-9. O plano gratuito do Supabase não comporta `nos-dev` e `nos-prod`. O dev passa a ser o `supabase start`.
-- Vercel (feito por você): Preview e Development com `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` do `nos-prod`, e nenhuma outra chave do Supabase.
+- Vercel (feito por você): Preview e Development com `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` do `nos-prod`, e nenhuma outra chave do Supabase. Depois de mudar as variáveis, faça um deploy novo do preview: `NEXT_PUBLIC_*` entra no build, e o deploy antigo continua com os valores velhos.
 - O fail-fast do env no boot não muda: vale em todos os ambientes.
 - MCP do Supabase aponta para o `nos-prod` em `read_only`: a variável do project ref vira `SUPABASE_PROD_PROJECT_REF` no `.mcp.json`, no `.env.example` e na instalação do kit (`docs/prompts/00-prompt-inicial.md`). Você atualiza o seu `.env.local`.
 - ADR 0009 novo (Supabase local como dev, Preview no `nos-prod`). ADR 0004 atualizado: deixa de proibir valor de produção em Preview, mantém a proibição de chave privilegiada.
 - Specs 04 e 05 e `docs/prompts/S0-sessoes.md` sem `nos-dev` como ambiente atual. Nas specs fechadas, o texto antigo ganha uma nota apontando para o NOS-11, sem reescrever o histórico.
-- `docs/prompts/S0-sessoes.md`: card 11 entra na sessão 4 com a ordem 09 → 11 → 10 → 07 → 08, e o checklist de fechamento passa a cobrir os cards 01 a 11 e só o `nos-prod`.
+- `docs/prompts/S0-sessoes.md`: card 11 entra na sessão 4 com a ordem 09 → 10 → 07 → 11 → 08, e o checklist de fechamento passa a cobrir os cards 01 a 11 e só o `nos-prod`.
 - Item do backlog sai da tabela (resolvido aqui).
 
 ## Fora de escopo

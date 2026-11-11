@@ -89,7 +89,7 @@ Use o MCP figma só para ler os tokens do arquivo Make 186t0PDVG4qObWpY6v4WUP (s
 
 ## Sessão 4 · Fechamento técnico (antes da S1)
 
-Ordem: 09 → 11 → 10 → 07 → 08. O 09 vem primeiro porque é segurança e libera a primeira tabela da S1; o 11 fixa o ambiente de dev no banco local antes que outro card dependa do projeto hospedado; o 08 vem por último porque reformata tudo o que os outros criaram.
+Ordem: 09 → 10 → 07 → 11 → 08. O 09 vem primeiro porque é segurança e libera a primeira tabela da S1; o 11 entrou depois do 07 porque só mexe em docs e na Vercel e nenhum card anterior dependia do projeto hospedado; o 08 vem por último porque reformata tudo o que os outros criaram.
 
 **Card 09 · GRANT explícito na Data API** (ADR 0007)
 ```text
@@ -97,13 +97,6 @@ Ordem: 09 → 11 → 10 → 07 → 08. O 09 vem primeiro porque é segurança e 
 /card docs/specs/S0/09-api-grants.md
 ```
 Antes do `/card`, você aplica o pré-requisito de permissões da spec (negar `db push` e `link` via `bunx`/`npx`). Você roda o `bunx supabase link` e o `db push --remote` no `nos-prod`; o Claude confere pelo MCP em `read_only`.
-
-**Card 11 · Supabase local como dev** (ADR 0009)
-```text
-/clear
-/card docs/specs/S0/11-local-dev-env.md
-```
-Fora do repo, você deixa Preview e Development na Vercel só com `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` do `nos-prod` e renomeia a variável do MCP para `SUPABASE_PROD_PROJECT_REF` (com o ref do `nos-prod`) no seu `.env.local`.
 
 **Card 10 · Pendências pequenas**
 ```text
@@ -117,6 +110,13 @@ O item de permissões (`.claude/settings.json`) é editado por você.
 /clear
 /card docs/specs/S0/07-changesets.md
 ```
+
+**Card 11 · Supabase local como dev** (ADR 0009)
+```text
+/clear
+/card docs/specs/S0/11-local-dev-env.md
+```
+Fora do repo, você deixa Preview e Development na Vercel só com `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` do `nos-prod` e renomeia a variável do MCP para `SUPABASE_PROD_PROJECT_REF` (com o ref do `nos-prod`) no seu `.env.local`. Depois, exporte a variável e reinicie o `claude` (ou rode `/mcp`): o processo em execução não lê o `.env.local` de novo. Mudou variável na Vercel, faça um deploy novo do preview: `NEXT_PUBLIC_*` entra no build.
 
 **Card 08 · Biome**
 ```text
