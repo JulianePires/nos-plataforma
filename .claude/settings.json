@@ -24,9 +24,20 @@
       "mcp__github__create_pull_request"
     ],
     "deny": [
-      "Read(./.env)",
-      "Read(./.env.*)",
-      "Edit(./.env*)",
+      "Read(./.env)",       
+      "Read(./.env.local)",
+      "Read(./.env.*.local)",
+      "Read(./.env.development)",
+      "Read(./.env.production)",
+      "Read(./.env.test)",
+      "Read(./.env.keys)",
+      "Edit(./.env)",
+      "Edit(./.env.local)",
+      "Edit(./.env.*.local)",
+      "Edit(./.env.development)",
+      "Edit(./.env.production)",
+      "Edit(./.env.test)",
+      "Edit(./.env.keys)",
       "Bash(git push --force:*)",
       "Bash(supabase db push:*)",
       "mcp__supabase__apply_migration"

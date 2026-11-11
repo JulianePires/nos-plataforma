@@ -41,7 +41,7 @@ Nunca diga "pronto" sem lint, typecheck e testes verdes e sem eu ter visto o dif
 - Estrutura: `apps/web/features/<módulo>/{components,actions.ts,queries.ts,schema.ts}`.
 
 ## Banco e segurança (não negociável)
-- Toda tabela nova nasce com RLS habilitada, policies e um teste pgTAP que prove o isolamento (cliente A não lê projeto B).
+- Toda tabela nova nasce com RLS habilitada, policies, GRANT explícito só do que a tela usa (a API não expõe tabela nova sozinha, ADR 0007) e um teste pgTAP que prove o isolamento (cliente A não lê projeto B).
 - Migrations só via `supabase/migrations`. Nunca altere o banco de produção pelo MCP; o MCP do Supabase roda em `read_only`.
 - Segredos só em variável de ambiente. Nunca leia nem escreva `.env*`, exceto `.env.example` (só nomes de variáveis e valores fictícios), que deve ser atualizado quando o card criar uma variável nova.
 
