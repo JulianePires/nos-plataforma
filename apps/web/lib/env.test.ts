@@ -27,7 +27,10 @@ describe("parsePublicEnv", () => {
 
   it("fails when NEXT_PUBLIC_SUPABASE_URL is not http(s)", () => {
     expect(() =>
-      parsePublicEnv({ ...valid, NEXT_PUBLIC_SUPABASE_URL: "ftp://example.supabase.co" }),
+      parsePublicEnv({
+        ...valid,
+        NEXT_PUBLIC_SUPABASE_URL: "ftp://example.supabase.co",
+      }),
     ).toThrow(/NEXT_PUBLIC_SUPABASE_URL/);
   });
 

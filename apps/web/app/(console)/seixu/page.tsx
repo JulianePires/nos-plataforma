@@ -1,4 +1,4 @@
-import { Badge, Button, Input, type BadgeTone } from "@nos/seixu";
+import { Badge, type BadgeTone, Button, Input } from "@nos/seixu";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

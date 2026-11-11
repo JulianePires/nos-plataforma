@@ -25,7 +25,7 @@ Monorepo Bun + Turborepo. Deploy na Vercel. Dev solo: 10 h/semana, 1 card = 1 PR
 5. **TDD:** red → green → refactor. Escreva o teste, veja falhar, implemente o mínimo, refatore.
 6. **Autoanálise:** antes de dizer que terminou, rode `/review` e corrija o que ele apontar.
 7. **Entrega:** rode `/pr` para gerar a mensagem de commit, o título e a descrição da PR.
-Nunca diga "pronto" sem lint, typecheck e testes verdes e sem eu ter visto o diff.
+Nunca diga "pronto" sem check, lint, typecheck e testes verdes e sem eu ter visto o diff.
 
 ## Limites de PR
 - No máximo **20 arquivos alterados por PR**. Não contam: lockfile, `database.types.ts` e outros gerados, `.changeset/`, `README.md`, e arquivos de controle (`CLAUDE.md`, `docs/context/INDEX.md`, `.claude/`). Passou disso, pare e proponha como dividir.
@@ -38,7 +38,7 @@ Nunca diga "pronto" sem lint, typecheck e testes verdes e sem eu ter visto o dif
 - Padrões de projeto só quando resolvem duplicação ou variação real (regra de três). Composição antes de herança. Strategy para regras que variam (impostos), Adapter para serviços externos (Supabase, e-mail), Repository em `features/*/queries.ts`.
 - Sem overengineering: nada de abstração "para o futuro", nada de lib nova sem justificar no plano, nada de config que ninguém pediu.
 - TypeScript strict, sem `any`. Validação com Zod nas bordas (form, Server Action, route handler).
-- Formatação: Prettier hoje; o Biome assume formatação e lint sem tipos no NOS-8 (ADR 0006). Até lá, não adicione config do Biome.
+- Formatação e lint sem tipos: Biome (`biome.json`). ESLint só com regras type-aware e o plugin do Next. Cada regra tem um dono só (tabela no ADR 0006): antes de ligar uma regra, veja se ela já existe na outra ferramenta.
 - Server Components por padrão; `"use client"` só com estado ou evento.
 - Estrutura: `apps/web/features/<módulo>/{components,actions.ts,queries.ts,schema.ts}`.
 
@@ -59,7 +59,7 @@ Nunca diga "pronto" sem lint, typecheck e testes verdes e sem eu ter visto o dif
 - Atualize `docs/context/INDEX.md` quando criar uma área nova do código.
 
 ## Comandos
-- `bun run dev` · `bun run lint` · `bun run typecheck` · `bun run test` · `bun run test:e2e`
+- `bun run dev` · `bun run format` · `bun run check` · `bun run lint` · `bun run typecheck` · `bun run test` · `bun run test:e2e`
 - `bunx supabase start` · `bunx supabase db reset` · `bunx supabase test db`
 - `scripts/check-pr-size.sh` (limite de 20 arquivos)
 
