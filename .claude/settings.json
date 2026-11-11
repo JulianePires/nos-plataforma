@@ -1,11 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(pnpm lint:*)",
-      "Bash(pnpm typecheck:*)",
-      "Bash(pnpm test:*)",
-      "Bash(pnpm build:*)",
-      "Bash(pnpm install:*)",
+      "Bash(bun run test:*)",
+      "Bash(bun run lint:*)",
+      "Bash(bun run typecheck:*)",
+      "Bash(bun run build:*)",
+      "Bash(bun install:*)",
       "Bash(supabase test db:*)",
       "Bash(supabase db reset:*)",
       "Bash(scripts/check-pr-size.sh:*)",
@@ -19,7 +19,7 @@
     "ask": [
       "Bash(git commit:*)",
       "Bash(git push:*)",
-      "Bash(pnpm add:*)",
+      "Bash(bun add:*)",
       "mcp__supabase__execute_sql",
       "mcp__github__create_pull_request"
     ],
@@ -40,6 +40,11 @@
       "Edit(./.env.keys)",
       "Bash(git push --force:*)",
       "Bash(supabase db push:*)",
+      "Bash(supabase link:*)",
+      "Bash(bunx supabase db push:*)",
+      "Bash(bunx supabase link:*)",
+      "Bash(npx supabase db push:*)",
+      "Bash(npx supabase link:*)",
       "mcp__supabase__apply_migration"
     ]
   }

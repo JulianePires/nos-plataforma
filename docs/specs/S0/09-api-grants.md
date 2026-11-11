@@ -3,7 +3,7 @@
 **Sprint:** S0 (fechamento) · **Estimativa:** 1 h · **Branch:** `chore/s0-api-grants`
 
 ## Objetivo
-Em local, `nos-dev` e `nos-prod`, tabela, view, sequence ou função nova em `public` nasce sem acesso para `anon` e `authenticated`. Só entra na API com GRANT explícito na migration (ADR 0007).
+No banco local (Docker) e no `nos-prod`, tabela, view, sequence ou função nova em `public` nasce sem acesso para `anon` e `authenticated`. Só entra na API com GRANT explícito na migration (ADR 0007).
 
 ## Contexto
 - `docs/adr/0007-explicit-data-api-grants.md`, `supabase/config.toml`, `supabase/migrations/`
@@ -16,12 +16,13 @@ Em local, `nos-dev` e `nos-prod`, tabela, view, sequence ou função nova em `pu
 - **Pré-requisito (você, antes de começar):** em `.claude/settings.json`, negar `Bash(bunx supabase db push:*)`, `Bash(npx supabase db push:*)`, `Bash(bunx supabase link:*)` e `Bash(npx supabase link:*)`, além dos que já existem. Regra de permissão casa por prefixo de comando e não cobre toda forma de chamar a CLI; a garantia real é que o Claude nunca roda `supabase link`, então `db push` não tem projeto alvo.
 - Migration `<timestamp>_revoke_default_api_privileges.sql`, com **um `alter default privileges` por classe de objeto** (o Postgres aceita uma só por `on`):
   - `on tables` e `on sequences`: `revoke all … from anon, authenticated, service_role`
-  - `on functions`: `revoke execute … from public, anon, authenticated, service_role` (função nova ganha `execute` para `public` por padrão, e as roles da API herdam)
+  - `on functions`: `revoke all … from anon, authenticated, service_role` em `public`, e `revoke execute … from public` **global** (sem `in schema`): função nova ganha `execute` para `public` por um padrão global, que um revoke por schema não remove, e as roles da API herdam dele
   - Vale para local e para os projetos hospedados, sem depender do painel, e deixa `service_role` igual ao comportamento local do `auto_expose_new_tables = false`.
 - Teste pgTAP em `supabase/tests/0001_default_privileges.test.sql`, dentro de uma transação: tabela nova sem `select` para `anon`, `authenticated` e `service_role`; função nova sem `execute` para essas roles; `grant` explícito libera só o que foi concedido.
-- Você aplica a migration nos projetos hospedados: `bunx supabase link` + `bunx supabase db push`, primeiro no `nos-dev`, depois no `nos-prod`. O Claude só confere pelo MCP em `read_only`.
-- Conferência no `nos-dev` pelo MCP do Supabase: `pg_default_acl` de `public` sem `anon`/`authenticated`/`service_role`, e sem `execute` padrão para `public` em funções.
-- ADR 0007: a pendência "nos-dev e nos-prod" sai das Decisões e vira fato, com a forma escolhida.
+- O ambiente de dev é o Supabase local em Docker (`supabase start`). Não há projeto `nos-dev` hospedado por causa do limite de projetos do plano gratuito. A migration chega ao local por `bunx supabase db reset`.
+- Você aplica a migration no `nos-prod`: `bunx supabase link` + `bunx supabase db push --remote` (na CLI 3.x, sem `--remote` o push vai para o banco local). O Claude só confere pelo MCP em `read_only`.
+- Conferência no `nos-prod` pelo MCP do Supabase (o banco local é conferido pelo pgTAP): `pg_default_acl` de `public` sem `anon`/`authenticated`/`service_role`, e sem `execute` padrão para `public` em funções.
+- ADR 0007: a pendência dos projetos hospedados sai das Decisões e vira fato, com a forma escolhida.
 
 ## Fora de escopo
 - Tabelas, policies e auth (S1 e S2).
@@ -46,24 +47,24 @@ Funcionalidade: Objeto novo fica fora da API
     Quando uma migration cria "public.probe_fn()" sem GRANT
     Então "anon", "authenticated" e "service_role" não têm EXECUTE em "public.probe_fn()"
 
-  Cenário: Projetos hospedados seguem o mesmo padrão
-    Dado a migration aplicada em "nos-dev" e "nos-prod"
-    Quando eu consulto "pg_default_acl" do schema "public"
+  Cenário: Produção segue o mesmo padrão
+    Dado a migration aplicada em "nos-prod"
+    Quando eu consulto "pg_default_acl" do schema "public" para a role "postgres"
     Então não há privilégio padrão para "anon", "authenticated" nem "service_role"
 ```
 
 ## Critérios de aceite
 - [ ] Pré-requisito de permissões aplicado: `.claude/settings.json` válido e negando `db push` e `link` via `supabase`, `bunx` e `npx`
 - [ ] `bunx supabase test db` verde localmente com o teste novo
-- [ ] Migration aplicada em `nos-dev` e `nos-prod` (evidência: `bunx supabase migration list --linked` de cada um)
-- [ ] `nos-dev` conferido pelo MCP `read_only`
+- [ ] Migration aplicada em `nos-prod` (evidência: `bunx supabase migration list --remote`)
+- [ ] `nos-prod` conferido pelo MCP `read_only`
 - [ ] ADR 0007 atualizado
 
 ## Plano de testes (TDD)
 | Cenário | Tipo | Arquivo |
 | --- | --- | --- |
 | Tabela nova, função nova, GRANT explícito | pgTAP | `supabase/tests/0001_default_privileges.test.sql` |
-| Projetos hospedados | consulta via MCP + `migration list`, evidência no PR | — |
+| Produção | consulta via MCP + `migration list`, evidência no PR | — |
 
 ## Limites
 - Até 20 arquivos. Nenhuma dependência nova.
