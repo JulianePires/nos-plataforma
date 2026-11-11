@@ -5,6 +5,8 @@
 ## Objetivo
 Push na `main` publica em produção, e toda PR ganha uma URL de preview.
 
+> Atualização (NOS-11, ADR 0009): o `nos-dev` hospedado saiu. Preview e Development usam a URL e a anon key do `nos-prod`; o cenário "Preview usa o banco de dev" e o critério "Nenhuma variável de produção exposta em Preview" deixaram de valer (Preview recebe só as chaves públicas do `nos-prod`).
+
 ## Contexto
 - `apps/web/package.json`, `turbo.json`, `.env.example`
 

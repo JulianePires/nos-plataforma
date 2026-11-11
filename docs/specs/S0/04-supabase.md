@@ -5,6 +5,8 @@
 ## Objetivo
 O Supabase roda localmente, os projetos `nos-dev` e `nos-prod` existem, e os tipos do banco são gerados em `packages/db`.
 
+> Atualização (NOS-11, ADR 0009): o `nos-dev` hospedado saiu. O dev é o Supabase local em Docker, e o MCP aponta para o `nos-prod` em `read_only`.
+
 ## Contexto
 - `docs/adr/0001-stack.md`, `packages/db/`
 
