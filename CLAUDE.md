@@ -60,7 +60,7 @@ Nunca diga "pronto" sem lint, typecheck e testes verdes e sem eu ter visto o dif
 
 ## Comandos
 - `bun run dev` · `bun run lint` · `bun run typecheck` · `bun run test` · `bun run test:e2e`
-- `supabase start` · `supabase db reset` · `supabase test db`
+- `bunx supabase start` · `bunx supabase db reset` · `bunx supabase test db`
 - `scripts/check-pr-size.sh` (limite de 20 arquivos)
 
 ## Git

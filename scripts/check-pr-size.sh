@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Limite de 20 arquivos por PR. Lockfiles, tipos gerados, changesets, READMEs e arquivos de controle não contam.
+# 20-file limit per PR. Lockfiles, generated types, changesets, READMEs and control files do not count.
 set -euo pipefail
 
 BASE="${1:-origin/main}"
@@ -11,9 +11,9 @@ FILES=$( { git diff --name-only "$BASE"...HEAD; git diff --name-only --cached; g
 
 COUNT=$(printf '%s\n' "$FILES" | sed '/^$/d' | wc -l | tr -d ' ')
 
-echo "Arquivos alterados: $COUNT/$LIMIT"
+echo "Changed files: $COUNT/$LIMIT"
 if [ "$COUNT" -gt "$LIMIT" ]; then
   printf '%s\n' "$FILES"
-  echo "PR acima do limite. Divida o card." >&2
+  echo "PR exceeds the limit. Split the card." >&2
   exit 1
 fi

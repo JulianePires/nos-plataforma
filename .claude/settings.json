@@ -6,8 +6,8 @@
       "Bash(bun run typecheck:*)",
       "Bash(bun run build:*)",
       "Bash(bun install:*)",
-      "Bash(supabase test db:*)",
-      "Bash(supabase db reset:*)",
+      "Bash(bunx supabase test db:*)",
+      "Bash(bunx supabase db reset:*)",
       "Bash(scripts/check-pr-size.sh:*)",
       "Bash(git status:*)",
       "Bash(git diff:*)",
@@ -24,7 +24,7 @@
       "mcp__github__create_pull_request"
     ],
     "deny": [
-      "Read(./.env)",       
+      "Read(./.env)",
       "Read(./.env.local)",
       "Read(./.env.*.local)",
       "Read(./.env.development)",

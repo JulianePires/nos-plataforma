@@ -8,7 +8,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
-    "db:types": "supabase gen types typescript --local > packages/db/src/database.types.ts"
+    "db:types": "bun scripts/db-types.mjs"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "16.3.8",
