@@ -8,6 +8,7 @@ export default defineConfig(
     "**/.next/**",
     "**/.turbo/**",
     "**/next-env.d.ts",
+    "packages/db/src/database.types.ts",
   ]),
   {
     files: ["**/*.{ts,tsx,js,mjs}"],
