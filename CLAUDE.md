@@ -66,4 +66,4 @@ Nunca diga "pronto" sem lint, typecheck e testes verdes e sem eu ter visto o dif
 ## Git
 - Branch: `feat|fix|chore/<sprint>-<slug>` (ex.: `feat/s0-monorepo-scaffold`).
 - Conventional Commits em inglês.
-- Pacotes de `packages/*` são internos e não são publicados. Changesets ainda não está instalado (card NOS-7); até lá, não crie changeset.
+- Pacotes de `packages/*` são internos e não são publicados. PR que mexe em `packages/*` leva um changeset (`bun run changeset`); `apps/web` fica fora (`ignore` em `.changeset/config.json`).

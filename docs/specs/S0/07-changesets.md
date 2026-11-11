@@ -33,8 +33,8 @@ Funcionalidade: Versionamento de pacotes internos
 
   Cenário: Nada é publicado
     Dado que todos os pacotes de "packages/*" são privados
-    Quando eu rodo "bun run changeset publish --dry-run"
-    Então nenhum pacote é publicado
+    Quando eu rodo "bun run changeset publish"
+    Então nenhum pacote é publicado e nenhuma tag é criada
 ```
 
 ## Critérios de aceite
@@ -46,7 +46,7 @@ Funcionalidade: Versionamento de pacotes internos
 | Cenário | Tipo | Arquivo |
 | --- | --- | --- |
 | Changelog gerado | script | manual no PR (saída do `changeset version`) |
-| Nada publicado | script | manual no PR (saída do `--dry-run`) |
+| Nada publicado | script | manual no PR (saída do `changeset publish`; o Changesets não tem `--dry-run`, e com `tag: false` pula pacotes privados) |
 
 ## Limites
 - Até 20 arquivos. Dependência nova: só `@changesets/cli`.
