@@ -7,15 +7,17 @@
 
 ## Contexto
 - `packages/seixu/`, `apps/web/app/(console)/page.tsx`
-- Valores de referência: bloco `:root` do protótipo Nós Console (paleta escura) e escala tipográfica do Seixu (abaixo)
+- Valores de referência: paleta escura (em Requisitos) e escala tipográfica provisória baseada na proporção áurea (em Requisitos)
 
 ## Referências (context7)
 - tailwindcss v4 (`@theme`, CSS variables, dark mode por `data-theme`), next/font/google
 
 ## Requisitos
 - `packages/seixu/src/tokens.css` com `@theme` e as camadas do Seixu: primitivos → semânticos. O tema escuro é o padrão; o claro (para o PDF) fica com valores provisórios.
-- Paleta escura: bg `#100c17`, surface `#17111f`, surface-2 `#1d1627`, surface-3 `#261d32`, border `#33283f`, text `#f2edf8`, text-2 `#a698b8`, azul `#5b8cff`, roxo `#b48cff`, marrom `#c38b5f`.
-- Fontes: DM Sans e JetBrains Mono via `next/font/google`. **Nenhuma fonte com serifa** e nenhum fallback serifado.
+- Paleta escura: bg `#100c17`, surface `#17111f`, surface-2 `#1d1627`, surface-3 `#261d32`, border `#33283f`, text `#f2edf8`, text-2 `#a698b8`, azul `#5b8cff`, roxo `#b48cff`, marrom `#c38b5f`. Verde e vermelho (Badge green/red, Button danger) vêm da paleta padrão do Tailwind (`green-*`, `red-*`) por variável, sem hex copiado.
+- Ação primária: fundo azul `#5b8cff` com texto escuro `#100c17` (texto branco reprova no AA).
+- Escala tipográfica provisória em √φ (≈ 1,272) com base 16 px, de modo que dois degraus multiplicam por φ: 12,6 · 14,2 · 16 · 20,4 · 25,9 · 32,9 · 41,9 px. Line-height 1,618 no corpo e 1,272 nos títulos.
+- Fontes: Commissioner (UI) e JetBrains Mono (dados e código) via `next/font/google` (ADR 0008). **Nenhuma fonte com serifa** e nenhum fallback serifado.
 - Componentes `Button` (primary, secondary, ghost, danger; sm, md), `Badge` (neutral, blue, purple, brown, green, red) e `Input` (com label obrigatório), com props do Seixu e sem cor literal.
 - Página `/seixu` no console mostrando os tokens e os 3 componentes.
 - `packages/seixu/README.md` com tabela de props de cada componente.

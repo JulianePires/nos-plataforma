@@ -50,7 +50,7 @@ Nunca diga "pronto" sem lint, typecheck e testes verdes e sem eu ter visto o dif
 ## UI (Seixu)
 - Tokens em `packages/seixu`. Nunca use cor literal em componente.
 - Paleta: fundo escuro arroxeado; contraste em azul, roxo e marrom.
-- **Nunca use fonte com serifa.** DM Sans (UI) + JetBrains Mono (dados/código).
+- **Nunca use fonte com serifa.** Commissioner (UI) + JetBrains Mono (dados/código). Ver ADR 0008.
 - Acessível: foco visível, labels, contraste AA, zero violações axe *serious*.
 
 ## Documentar decisões

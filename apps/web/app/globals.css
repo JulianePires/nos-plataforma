@@ -1,1 +1,5 @@
 @import "tailwindcss";
+@import "@nos/seixu/tokens.css";
+
+/* O Tailwind não varre node_modules; sem isso as classes dos componentes do Seixu somem. */
+@source "../../../packages/seixu/src";
