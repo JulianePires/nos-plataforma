@@ -14,5 +14,5 @@ Regras:
 - Antes de criar função ou componente, rode `rg` atrás de um existente.
 - Sem comentários óbvios. Sem lib nova fora do plano.
 - Se um teste exigir mudar a spec, pare e me pergunte.
-- Ao final, rode `pnpm lint && pnpm typecheck && pnpm test` e mostre só o resumo.
+- Ao final, rode `bun run lint && bun run typecheck && bun run test` e mostre só o resumo.
 - NÃO faça commit. Termine sugerindo `/review`.

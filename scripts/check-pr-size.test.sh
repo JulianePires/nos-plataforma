@@ -27,9 +27,15 @@ run_check() {
   STATUS=$?
 }
 
+has_all() {
+  local text
+  for text in "$@"; do grep -qF "$text" <<<"$OUTPUT" || return 1; done
+}
+
 expect() {
-  local name=$1 want_status=$2 want_text=$3
-  if [ "$STATUS" -eq "$want_status" ] && grep -qF "$want_text" <<<"$OUTPUT"; then
+  local name=$1 want_status=$2
+  shift 2
+  if [ "$STATUS" -eq "$want_status" ] && has_all "$@"; then
     echo "ok   - $name"
   else
     echo "FAIL - $name: status $STATUS (want $want_status), output: $(head -1 <<<"$OUTPUT")"
@@ -42,26 +48,26 @@ new_repo
 add_files 21 f
 git add -A && git commit -q -m files
 run_check
-expect "fails above the limit and lists the files" 1 "f21.txt"
+expect "fails above the limit and lists the files" 1 "f21.txt" "PR exceeds the limit. Split the card."
 
 new_repo
 add_files 20 f
 echo lock > bun.lock
 git add -A && git commit -q -m files
 run_check
-expect "lockfile does not count" 0 "20/20"
+expect "lockfile does not count" 0 "Changed files: 20/20"
 
 new_repo
 add_files 21 f
 git add -A
 run_check
-expect "counts staged-only changes" 1 "21/20"
+expect "counts staged-only changes" 1 "Changed files: 21/20"
 
 new_repo
 add_files 1 f
 git add -A && git commit -q -m files
 echo changed > f1.txt && git add -A
 run_check
-expect "counts a committed and staged file once" 0 ": 1/20"
+expect "counts a committed and staged file once" 0 "Changed files: 1/20"
 
 exit "$FAILURES"

@@ -8,7 +8,8 @@
       "outputs": [".next/**", "!.next/cache/**", "!.next/dev/**"]
     },
     "typecheck": {
-      "dependsOn": ["^typecheck"]
+      "dependsOn": ["^typecheck"],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/packages/*/src/**"]
     },
     "test": {
       "dependsOn": ["^test"]
