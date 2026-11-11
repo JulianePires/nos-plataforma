@@ -1,0 +1,103 @@
+/* Seixu: primitivos (--seixu-*, sem utilitário) → semânticos (@theme inline, viram utilitários). */
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --seixu-bg: #100c17;
+  --seixu-surface: #17111f;
+  --seixu-surface-2: #1d1627;
+  --seixu-surface-3: #261d32;
+  --seixu-border: #33283f;
+  --seixu-text: #f2edf8;
+  --seixu-text-2: #a698b8;
+  --seixu-blue: #5b8cff;
+  --seixu-purple: #b48cff;
+  --seixu-brown: #c38b5f;
+  --seixu-green: var(--color-green-400);
+  --seixu-red: var(--color-red-400);
+  /* Texto escuro sobre azul/vermelho: branco reprova no AA (≈ 3,2:1 no azul). */
+  --seixu-on-action: #100c17;
+}
+
+/* Provisório: tema claro só para o PDF; valores finais entram com o card do PDF. */
+[data-theme="light"] {
+  color-scheme: light;
+  --seixu-bg: #ffffff;
+  --seixu-surface: #faf8fc;
+  --seixu-surface-2: #f3eff7;
+  --seixu-surface-3: #ebe5f1;
+  --seixu-border: #d9d0e3;
+  --seixu-text: #1a1424;
+  --seixu-text-2: #5e5270;
+  --seixu-blue: #2f5fd6;
+  --seixu-purple: #7a4fd0;
+  --seixu-brown: #8f5a32;
+  --seixu-green: var(--color-green-700);
+  --seixu-red: var(--color-red-700);
+  --seixu-on-action: #ffffff;
+}
+
+@theme inline {
+  --color-bg: var(--seixu-bg);
+  --color-surface: var(--seixu-surface);
+  --color-surface-2: var(--seixu-surface-2);
+  --color-surface-3: var(--seixu-surface-3);
+  --color-border: var(--seixu-border);
+  --color-text: var(--seixu-text);
+  --color-text-muted: var(--seixu-text-2);
+  --color-accent-blue: var(--seixu-blue);
+  --color-accent-purple: var(--seixu-purple);
+  --color-accent-brown: var(--seixu-brown);
+  --color-success: var(--seixu-green);
+  --color-danger: var(--seixu-red);
+  --color-danger-hover: color-mix(
+    in oklab,
+    var(--seixu-red) 85%,
+    var(--seixu-text)
+  );
+  --color-action-primary: var(--seixu-blue);
+  --color-action-primary-hover: color-mix(
+    in oklab,
+    var(--seixu-blue) 85%,
+    var(--seixu-text)
+  );
+  --color-on-action: var(--seixu-on-action);
+  --color-focus: var(--seixu-purple);
+
+  --font-sans: var(--font-commissioner), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+/* Escala provisória em √φ (≈ 1,272) com base 16 px: a cada dois degraus, ×φ. */
+@theme {
+  --font-serif: initial;
+
+  --text-xs: 0.786rem;
+  --text-xs--line-height: 1.618;
+  --text-sm: 0.886rem;
+  --text-sm--line-height: 1.618;
+  --text-base: 1rem;
+  --text-base--line-height: 1.618;
+  --text-lg: 1.272rem;
+  --text-lg--line-height: 1.272;
+  --text-xl: 1.618rem;
+  --text-xl--line-height: 1.272;
+  --text-2xl: 2.058rem;
+  --text-2xl--line-height: 1.272;
+  --text-3xl: 2.618rem;
+  --text-3xl--line-height: 1.272;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+
+  --spacing: 0.25rem;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+  }
+}

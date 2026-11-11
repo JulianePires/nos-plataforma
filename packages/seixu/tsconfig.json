@@ -1,0 +1,12 @@
+{
+  "extends": "@nos/typescript-config/base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "declaration": false,
+    "declarationMap": false
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "vitest.config.ts"]
+}
