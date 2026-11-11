@@ -23,16 +23,14 @@ bun run dev                  # http://localhost:3000
 
 ## Estrutura
 ```
-apps/web/                 app Next.js (console, portal, vitrine)
-packages/seixu/           tokens e componentes do Seixu
-packages/pricing/         motor de orçamento (sem I/O)
-packages/db/              tipos do banco e schemas Zod
-packages/eslint-config/   config compartilhada de lint
-packages/typescript-config/
-supabase/                 migrations, policies e testes pgTAP
-docs/                     ADRs, specs por sprint, índice de contexto
+apps/web/                    app Next.js (console, portal, vitrine)
+packages/seixu/              tokens e componentes do Seixu
+packages/pricing/            motor de orçamento (sem I/O)
+packages/db/                 tipos gerados do banco (`bun run db:types`)
+packages/typescript-config/  tsconfig compartilhado
+supabase/                    config.toml, migrations (com RLS e policies), tests (pgTAP)
+docs/                        ADRs, specs por sprint, índice de contexto
 ```
-A estrutura acima é o alvo da sprint S0; o card 02 adapta o scaffold do create-turbo.
 
 ## Trabalhando com o Claude Code
 - Regras do projeto: [`CLAUDE.md`](CLAUDE.md)

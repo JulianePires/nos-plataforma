@@ -60,10 +60,10 @@ Nunca diga "pronto" sem lint, typecheck e testes verdes e sem eu ter visto o dif
 
 ## Comandos
 - `bun run dev` · `bun run lint` · `bun run typecheck` · `bun run test` · `bun run test:e2e`
-- `supabase start` · `supabase db reset` · `supabase test db`
+- `bunx supabase start` · `bunx supabase db reset` · `bunx supabase test db`
 - `scripts/check-pr-size.sh` (limite de 20 arquivos)
 
 ## Git
 - Branch: `feat|fix|chore/<sprint>-<slug>` (ex.: `feat/s0-monorepo-scaffold`).
 - Conventional Commits em inglês.
-- Pacotes de `packages/*` são internos e não são publicados. Changesets ainda não está instalado (card NOS-7); até lá, não crie changeset.
+- Pacotes de `packages/*` são internos e não são publicados. PR que mexe em `packages/*` leva um changeset (`bun run changeset`); `apps/web` fica fora (`ignore` em `.changeset/config.json`).
