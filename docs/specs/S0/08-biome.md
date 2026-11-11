@@ -10,11 +10,11 @@ O Biome formata o repo e roda o lint que não depende de tipos; o ESLint fica s�
 - `docs/adr/0005-typescript-6-for-lint.md`, `docs/adr/0006-biome.md`
 
 ## Referências (context7)
-- biome (`biome.json`, `biome migrate prettier`, `biome ci`, integração com VCS), typescript-eslint (desligar regras que o Biome passa a cobrir)
+- biome (`biome.json`, `biome migrate prettier`, `biome ci`, integração com VCS: `vcs.enabled` + `useIgnoreFile`), typescript-eslint (desligar regras que o Biome passa a cobrir)
 
 ## Requisitos
 - `@biomejs/biome` como devDependency da raiz, versão exata; `prettier` e o script `format` atual saem.
-- `biome.json` na raiz com `vcs.useIgnoreFile: true`, formatter seguindo o estilo atual do código (aspas duplas, ponto e vírgula, 2 espaços) e linter `recommended`.
+- `biome.json` na raiz com integração com o git ligada (`vcs.enabled: true`, `vcs.clientKind: "git"`, `vcs.useIgnoreFile: true`; sem o `enabled`, o `.gitignore` é ignorado), formatter seguindo o estilo atual do código (aspas duplas, ponto e vírgula, 2 espaços) e linter `recommended`.
 - `packages/db/src/database.types.ts` ignorado pelo Biome, como já é pelo ESLint.
 - Scripts na raiz: `bun run format` (formata e corrige) e `bun run check` (só verifica, sem escrever).
 - Cada regra com um dono só: as regras que existem nos dois ficam ligadas em um e desligadas no outro. A tabela de donos entra no ADR 0006.
@@ -49,6 +49,16 @@ Funcionalidade: Formatação e lint rápidos
     Dado uma PR com "const x: any = 1"
     Quando o CI roda
     Então o job "ci" falha citando a regra de any explícito
+
+  Cenário: console.log bloqueado, console.error permitido
+    Dado uma PR com "console.log('x')" e outra com "console.error('x')"
+    Quando o CI roda
+    Então a primeira falha citando a regra de console e a segunda passa
+
+  Cenário: Arquivo ignorado pelo git fica fora do Biome
+    Dado um arquivo fora do padrão em um caminho do ".gitignore"
+    Quando eu rodo "bun run check"
+    Então o Biome não aponta esse arquivo
 ```
 
 ## Critérios de aceite
@@ -64,4 +74,4 @@ Funcionalidade: Formatação e lint rápidos
 | `format` corrige | comando, evidência no PR | — |
 
 ## Limites
-- Até 20 arquivos. Se a primeira formatação passar disso, a reformatação vai numa PR própria, só com o resultado do `bun run format`. Dependência: `@biomejs/biome` (sai `prettier`).
+- Até 20 arquivos. Se a primeira formatação passar disso, divida em duas PRs nesta ordem: (1) Biome instalado, `biome.json` e a reformatação, **sem** o passo `Biome` no CI; (2) o passo `Biome` no CI e o resto do card. Assim nenhuma das duas fica travada pelo próprio check. Dependência: `@biomejs/biome` (sai `prettier`).

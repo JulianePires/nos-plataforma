@@ -9,7 +9,7 @@ Hoje o Prettier formata e o ESLint faz todo o lint, inclusive regras que não pr
 - Biome (`@biomejs/biome`) substitui o Prettier na formatação e assume as regras de lint que não dependem de tipos.
 - O ESLint fica só com o que o Biome não cobre: regras type-aware do typescript-eslint (`strictTypeChecked`) e o plugin do Next (`core-web-vitals`).
 - Cada regra tem um dono só. Regra que existe nos dois fica ligada em um e desligada no outro; a lista fica neste ADR quando o NOS-8 for implementado.
-- Biome respeita o `.gitignore` (`vcs.useIgnoreFile`) e ignora arquivo gerado (`packages/db/src/database.types.ts`).
+- Biome respeita o `.gitignore` (`vcs.enabled` + `vcs.useIgnoreFile`) e ignora arquivo gerado (`packages/db/src/database.types.ts`).
 - No CI, `biome ci` roda antes do ESLint, no mesmo job `ci`.
 
 ## Alternativas descartadas

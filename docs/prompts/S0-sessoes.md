@@ -1,6 +1,6 @@
 # S0 · Sessões (9 a 15 de novembro)
 
-São 6 cards em 3 sessões de cerca de 3 h. A ordem segue as dependências: repo → monorepo → CI → banco → deploy → UI. Em cada card, o ciclo é o mesmo: `/card` → você aprova → `/tdd` → `/review` → `/pr`. Entre cards, `/clear`.
+São 6 cards em 3 sessões de cerca de 3 h, mais o card 08 (Biome) antes da S1. A ordem segue as dependências: repo → monorepo → CI → banco → deploy → UI. Em cada card, o ciclo é o mesmo: `/card` → você aprova → `/tdd` → `/review` → `/pr`. Entre cards, `/clear`.
 
 Antes da sessão 1, faça à mão (o Claude não deve fazer isso):
 - [ ] Criar o repo vazio `nos-plataforma` no GitHub e clonar
