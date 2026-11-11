@@ -50,9 +50,9 @@ Funcionalidade: Componentes base do Seixu
 ```
 
 ## Critérios de aceite
-- [ ] Testes de componente com Testing Library para variantes e label
-- [ ] Contraste AA do texto primário e do botão primário no tema escuro
-- [ ] Nenhuma cor literal fora de `tokens.css` (`rg "#[0-9a-fA-F]{3,6}" packages/seixu/src --glob '!tokens.css'` vazio)
+- [x] Testes de componente com Testing Library para variantes e label
+- [x] Contraste AA do texto primário e do botão primário no tema escuro
+- [x] Nenhuma cor literal fora de `tokens.css` (`rg "#[0-9a-fA-F]{3,6}" packages/seixu/src --glob '!tokens.css'` vazio)
 
 ## Plano de testes (TDD)
 | Cenário | Tipo | Arquivo |

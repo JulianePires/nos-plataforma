@@ -62,10 +62,10 @@ Funcionalidade: Formatação e lint rápidos
 ```
 
 ## Critérios de aceite
-- [ ] Prettier removido; nenhum arquivo de config do Prettier sobrando
-- [ ] Nenhuma regra ligada no Biome e no ESLint ao mesmo tempo (tabela no ADR 0006)
-- [ ] CI continua abaixo de 4 minutos
-- [ ] Os cenários comprovados com PRs de teste (fechadas sem merge) ou descritos no PR
+- [x] Prettier removido; nenhum arquivo de config do Prettier sobrando
+- [x] Nenhuma regra ligada no Biome e no ESLint ao mesmo tempo (tabela no ADR 0006)
+- [x] CI continua abaixo de 4 minutos
+- [x] Os cenários comprovados com PRs de teste (fechadas sem merge) ou descritos no PR
 
 ## Plano de testes (TDD)
 | Cenário | Tipo | Arquivo |

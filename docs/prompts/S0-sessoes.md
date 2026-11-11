@@ -130,13 +130,13 @@ Fora do repo, você deixa o Preview na Vercel só com `NEXT_PUBLIC_SUPABASE_URL`
 
 A S0 só fecha com todos os itens abaixo marcados. O que não for da S0 está em `docs/specs/backlog.md`, com sprint de destino.
 
-- [ ] Cards 01 a 11 com todos os critérios de aceite marcados na spec
-- [ ] Nenhuma PR aberta e nenhuma branch além da `main` (local e remota)
-- [ ] ADRs 0001 a 0009 com status Aceita (0006 passa a Aceita no card 08)
-- [ ] `main` verde: `ci` no último commit e deploy de produção `READY`
-- [ ] `bun install --frozen-lockfile && bun run lint && bun run typecheck && bun run test` verdes num clone limpo
-- [ ] `bunx supabase db reset && bunx supabase test db` verdes; `nos-prod` com as mesmas migrations do local
-- [ ] `CLAUDE.md`, `README.md` e `docs/context/INDEX.md` sem comando, pasta ou ferramenta que não exista mais
+- [x] Cards 01 a 11 com todos os critérios de aceite marcados na spec
+- [x] Nenhuma PR aberta e nenhuma branch além da `main` (local e remota)
+- [x] ADRs 0001 a 0009 com status Aceita (0006 passa a Aceita no card 08)
+- [x] `main` verde: `ci` no último commit (o workflow também roda em push na `main` desde o fechamento da S0) e deploy de produção `READY`
+- [x] `bun install --frozen-lockfile && bun run lint && bun run typecheck && bun run test` verdes num clone limpo
+- [x] `bunx supabase db reset && bunx supabase test db` verdes; `nos-prod` com as mesmas migrations do local
+- [x] `CLAUDE.md`, `README.md` e `docs/context/INDEX.md` sem comando, pasta ou ferramenta que não exista mais
 
 ```text
 /clear

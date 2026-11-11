@@ -38,9 +38,9 @@ Funcionalidade: Versionamento de pacotes internos
 ```
 
 ## Critérios de aceite
-- [ ] `bun run changeset` cria um arquivo em `.changeset/`.
-- [ ] `bun run changeset version` atualiza versão e CHANGELOG do pacote afetado.
-- [ ] Nenhum pacote sem `"private": true`.
+- [x] `bun run changeset` cria um arquivo em `.changeset/`.
+- [x] `bun run changeset version` atualiza versão e CHANGELOG do pacote afetado.
+- [x] Nenhum pacote sem `"private": true`.
 
 ## Plano de testes (TDD)
 | Cenário | Tipo | Arquivo |
