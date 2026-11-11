@@ -42,9 +42,9 @@ Funcionalidade: Kit do Claude Code no repositório
 ```
 
 ## Critérios de aceite
-- [ ] `claude` aberto na raiz lista os comandos `/card`, `/tdd`, `/review`, `/pr`, `/adr`
-- [ ] `/mcp` mostra context7, supabase, github, vercel e figma (autenticar cada um uma vez)
-- [ ] `scripts/check-pr-size.sh` é executável (`chmod +x`)
+- [x] `claude` aberto na raiz lista os comandos `/card`, `/tdd`, `/review`, `/pr`, `/adr`
+- [x] `/mcp` mostra context7, supabase, github, vercel e figma (autenticar cada um uma vez)
+- [x] `scripts/check-pr-size.sh` é executável (`chmod +x`)
 
 ## Plano de testes (TDD)
 | Cenário | Tipo | Arquivo |

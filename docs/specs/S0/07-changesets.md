@@ -1,6 +1,6 @@
 # NOS-7 · Changesets para os pacotes internos
 
-**Sprint:** S0 (backlog) · **Estimativa:** 1 h · **Branch:** `chore/s0-changesets`
+**Sprint:** S0 (fechamento) · **Estimativa:** 1 h · **Branch:** `chore/s0-changesets`
 
 ## Objetivo
 O monorepo usa Changesets para versionar e registrar mudanças em `packages/*`, sem publicar nada no npm.

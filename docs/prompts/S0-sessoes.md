@@ -1,6 +1,6 @@
 # S0 · Sessões (9 a 15 de novembro)
 
-São 6 cards em 3 sessões de cerca de 3 h, mais o card 08 (Biome) antes da S1. A ordem segue as dependências: repo → monorepo → CI → banco → deploy → UI. Em cada card, o ciclo é o mesmo: `/card` → você aprova → `/tdd` → `/review` → `/pr`. Entre cards, `/clear`.
+São 10 cards em 4 sessões de cerca de 3 h: 6 de base e 4 de fechamento técnico (07 a 10), todos antes da S1. A ordem segue as dependências: repo → monorepo → CI → banco → deploy → UI. Em cada card, o ciclo é o mesmo: `/card` → você aprova → `/tdd` → `/review` → `/pr`. Entre cards, `/clear`.
 
 Antes da sessão 1, faça à mão (o Claude não deve fazer isso):
 - [ ] Criar o repo vazio `nos-plataforma` no GitHub e clonar
@@ -87,21 +87,53 @@ Use o MCP figma só para ler os tokens do arquivo Make 186t0PDVG4qObWpY6v4WUP (s
 
 ---
 
-## Antes da S1 · Ferramentas
+## Sessão 4 · Fechamento técnico (antes da S1)
+
+Ordem: 09 → 10 → 07 → 08. O 09 vem primeiro porque é segurança e libera a primeira tabela da S1; o 08 vem por último porque reformata tudo o que os outros criaram.
+
+**Card 09 · GRANT explícito na Data API** (ADR 0007)
+```text
+/clear
+/card docs/specs/S0/09-api-grants.md
+```
+Você roda o `bunx supabase db push` em `nos-dev` e `nos-prod`; o Claude confere pelo MCP em `read_only`.
+
+**Card 10 · Pendências pequenas**
+```text
+/clear
+/card docs/specs/S0/10-chores.md
+```
+O item de permissões (`.claude/settings.json`) é editado por você.
+
+**Card 07 · Changesets**
+```text
+/clear
+/card docs/specs/S0/07-changesets.md
+```
 
 **Card 08 · Biome**
 ```text
 /clear
 /card docs/specs/S0/08-biome.md
 ```
-Roda depois do card 04 e antes do primeiro card da S1, para o código novo já nascer formatado pelo Biome.
 
 ---
 
 ## Fechamento da sprint
+
+A S0 só fecha com todos os itens abaixo marcados. O que não for da S0 está em `docs/specs/backlog.md`, com sprint de destino.
+
+- [ ] Cards 01 a 10 com todos os critérios de aceite marcados na spec
+- [ ] Nenhuma PR aberta e nenhuma branch além da `main` (local e remota)
+- [ ] ADRs 0001 a 0007 com status Aceita (0006 passa a Aceita no card 08)
+- [ ] `main` verde: `ci` no último commit e deploy de produção `READY`
+- [ ] `bun install --frozen-lockfile && bun run lint && bun run typecheck && bun run test` verdes num clone limpo
+- [ ] `bunx supabase db reset && bunx supabase test db` verdes; `nos-dev` e `nos-prod` com as mesmas migrations
+- [ ] `CLAUDE.md`, `README.md` e `docs/context/INDEX.md` sem comando, pasta ou ferramenta que não exista mais
+
 ```text
 /clear
-Leia `git log --oneline main` desta semana e os critérios de aceite das specs em docs/specs/S0/. Me diga em até 10 linhas o que fechou, o que ficou pendente e se algo precisa virar card na S1. Não abra código.
+Leia `git log --oneline main` desta semana, os critérios de aceite das specs em docs/specs/S0/ e o checklist de fechamento em docs/prompts/S0-sessoes.md. Me diga em até 10 linhas o que fechou, o que ficou pendente e confirme que todo item fora da S0 está em docs/specs/backlog.md. Não abra código.
 ```
 Depois, mova os cards no quadro do Notion.
 

@@ -42,9 +42,9 @@ Funcionalidade: Banco disponível para o app
 ```
 
 ## Critérios de aceite
-- [ ] `lib/env.ts` com teste unitário para variável ausente
-- [ ] Nenhuma chave `service_role` no código do app
-- [ ] MCP do Supabase apontando para `nos-dev` em `read_only`
+- [x] `lib/env.ts` com teste unitário para variável ausente
+- [x] Nenhuma chave `service_role` no código do app
+- [x] MCP do Supabase apontando para `nos-dev` em `read_only`
 
 ## Plano de testes (TDD)
 | Cenário | Tipo | Arquivo |

@@ -1,6 +1,6 @@
 # NOS-8 · Biome para formatação e lint sem tipos
 
-**Sprint:** S0 (fim, antes da S1) · **Estimativa:** 1,5 h · **Branch:** `chore/s0-biome`
+**Sprint:** S0 (fechamento) · **Estimativa:** 1,5 h · **Branch:** `chore/s0-biome`
 
 ## Objetivo
 O Biome formata o repo e roda o lint que não depende de tipos; o ESLint fica só com as regras type-aware e o plugin do Next. O Prettier sai.

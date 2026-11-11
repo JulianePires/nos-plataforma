@@ -30,6 +30,7 @@ Nunca diga "pronto" sem lint, typecheck e testes verdes e sem eu ter visto o dif
 ## Limites de PR
 - No máximo **20 arquivos alterados por PR**. Não contam: lockfile, `database.types.ts` e outros gerados, `.changeset/`, `README.md`, e arquivos de controle (`CLAUDE.md`, `docs/context/INDEX.md`, `.claude/`). Passou disso, pare e proponha como dividir.
 - Uma PR = um card. Nada de "aproveitei e mudei X".
+- Achou algo fora do card? Não corrija na PR: registre em `docs/specs/backlog.md` (origem + sprint de destino) ou proponha um card.
 
 ## Código
 - Sem comentários óbvios. Comente só o **porquê** de algo não evidente (regra de negócio, workaround, decisão de segurança).
