@@ -39,6 +39,6 @@ Regras permanentes desta parceria:
 
 1. Copie a pasta inteira para a raiz do repo `nos-plataforma`.
 2. `chmod +x scripts/check-pr-size.sh`
-3. Crie `.env.local` com `SUPABASE_DEV_PROJECT_REF` e `GITHUB_PAT` (PAT fine-grained, só este repo). Exporte as duas no terminal antes de abrir o `claude`.
+3. Crie `.env.local` com `SUPABASE_PROD_PROJECT_REF` (ref do `nos-prod`; o MCP roda em `read_only`, ADR 0009) e `GITHUB_PAT` (PAT fine-grained, só este repo). Exporte as duas no terminal antes de abrir o `claude`.
 4. Abra `claude` na raiz, aprove os servidores do `.mcp.json` e rode `/mcp` para autenticar supabase, vercel e figma pelo navegador.
 5. Cole o prompt inicial acima.
