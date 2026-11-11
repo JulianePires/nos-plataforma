@@ -37,6 +37,7 @@ Nunca diga "pronto" sem lint, typecheck e testes verdes e sem eu ter visto o dif
 - Padrões de projeto só quando resolvem duplicação ou variação real (regra de três). Composição antes de herança. Strategy para regras que variam (impostos), Adapter para serviços externos (Supabase, e-mail), Repository em `features/*/queries.ts`.
 - Sem overengineering: nada de abstração "para o futuro", nada de lib nova sem justificar no plano, nada de config que ninguém pediu.
 - TypeScript strict, sem `any`. Validação com Zod nas bordas (form, Server Action, route handler).
+- Formatação: Prettier hoje; o Biome assume formatação e lint sem tipos no NOS-8 (ADR 0006). Até lá, não adicione config do Biome.
 - Server Components por padrão; `"use client"` só com estado ou evento.
 - Estrutura: `apps/web/features/<módulo>/{components,actions.ts,queries.ts,schema.ts}`.
 

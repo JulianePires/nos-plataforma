@@ -1,6 +1,6 @@
 # S0 · Sessões (9 a 15 de novembro)
 
-São 6 cards em 3 sessões de cerca de 3 h. A ordem segue as dependências: repo → monorepo → CI → banco → deploy → UI. Em cada card, o ciclo é o mesmo: `/card` → você aprova → `/tdd` → `/review` → `/pr`. Entre cards, `/clear`.
+São 6 cards em 3 sessões de cerca de 3 h, mais o card 08 (Biome) antes da S1. A ordem segue as dependências: repo → monorepo → CI → banco → deploy → UI. Em cada card, o ciclo é o mesmo: `/card` → você aprova → `/tdd` → `/review` → `/pr`. Entre cards, `/clear`.
 
 Antes da sessão 1, faça à mão (o Claude não deve fazer isso):
 - [ ] Criar o repo vazio `nos-plataforma` no GitHub e clonar
@@ -84,6 +84,17 @@ Se quiser conferir a referência visual:
 ```text
 Use o MCP figma só para ler os tokens do arquivo Make 186t0PDVG4qObWpY6v4WUP (src/data/typography.ts e src/data/components.ts). A paleta NÃO vem do Figma: use os valores da spec, que já estão na direção arroxeada.
 ```
+
+---
+
+## Antes da S1 · Ferramentas
+
+**Card 08 · Biome**
+```text
+/clear
+/card docs/specs/S0/08-biome.md
+```
+Roda depois do card 04 e antes do primeiro card da S1, para o código novo já nascer formatado pelo Biome.
 
 ---
 
