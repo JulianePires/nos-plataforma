@@ -2,7 +2,7 @@ import { spawnSync } from "node:child_process";
 import { renameSync, rmSync, writeFileSync } from "node:fs";
 
 const TARGET = "packages/db/src/database.types.ts";
-const TEMP = `${TARGET}.tmp`;
+const TEMP = `${TARGET}.${process.pid}.tmp`;
 
 // Constant command through the shell so Windows resolves the CLI shim; no user input reaches it.
 const result = spawnSync("supabase gen types typescript --local", {
@@ -21,7 +21,8 @@ if (result.error || result.status !== 0 || types.trim() === "") {
 }
 
 try {
-  writeFileSync(TEMP, types);
+  // "wx" refuses a pre-existing path (including a planted symlink) instead of writing through it.
+  writeFileSync(TEMP, types, { flag: "wx" });
   renameSync(TEMP, TARGET);
 } finally {
   rmSync(TEMP, { force: true });

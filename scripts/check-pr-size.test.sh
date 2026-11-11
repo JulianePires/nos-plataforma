@@ -29,7 +29,7 @@ run_check() {
 
 has_all() {
   local text
-  for text in "$@"; do grep -qF "$text" <<<"$OUTPUT" || return 1; done
+  for text in "$@"; do grep -qxF "$text" <<<"$OUTPUT" || return 1; done
 }
 
 expect() {
