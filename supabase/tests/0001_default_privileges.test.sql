@@ -8,6 +8,7 @@ select ok(not has_table_privilege('authenticated', 'public.probe', 'select'), 'a
 select ok(not has_table_privilege('service_role', 'public.probe', 'select'), 'service_role has no select on a new table');
 
 grant select on public.probe to authenticated;
+grant select on public.probe to anon;
 
 select ok(has_table_privilege('authenticated', 'public.probe', 'select'), 'explicit grant gives authenticated select');
 select ok(not has_table_privilege('authenticated', 'public.probe', 'insert'), 'explicit grant does not give authenticated insert');
