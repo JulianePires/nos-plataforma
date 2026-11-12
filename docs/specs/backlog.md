@@ -13,6 +13,7 @@ Itens levantados nas sprints que pertencem a sprints futuras. Cada um tem origem
 | Equipe lendo perfis de clientes (função `is_staff()` ou equivalente para RLS) | NOS-14 | S2 | Card de `project_members` |
 | Login com Google para a equipe | NOS-18 | S2 | Spec `docs/specs/S1/07-google-login.md`; movido da S1 para abrir espaço para o NOS-19 e o NOS-20 |
 | Aviso de limite de envio no login sem revelar quem é usuário (hoje todo erro do `signInWithOtp` vira a mensagem neutra, porque o limite de frequência por usuário só atinge e-mails cadastrados) | NOS-15 | S2 | Junto do SMTP próprio; avaliar captcha ou limite por IP no app |
+| CI roda `bun run lint` antes do `next typegen`, então os helpers globais gerados (`PageProps`, `LayoutProps`, `RouteContext`) viram tipo de erro no ESLint type-aware; hoje as páginas tipam as props à mão | NOS-15 | S1 | Rodar `next typegen` antes do lint no workflow `ci` ou no script `lint` do `apps/web` |
 | Landing da Nós em `/` (serviços, processo, cases, contato que vira solicitação) com entrada para cliente e equipe; substitui a raiz provisória do NOS-16 | Pedido da Ju (12/11) | S6 | Card no Notion; textos e fotos são um card de negócio na S5 |
 | Sentry e Grafana Cloud como operadores na política de privacidade | ADR 0011 | S6 | Card de termos de uso e LGPD |
 | Portal lista projetos em execução e executados; `project_links.kind` (production, domain, infra, repository, documentation, design, staging) e `internal` para painéis sensíveis | Pedido da Ju (12/11) | S3 | Cards de links e de visão geral do portal |

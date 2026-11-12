@@ -9,7 +9,11 @@ const errors: Record<string, string> = {
   link: "O link expirou ou já foi usado. Peça um novo.",
 };
 
-export default async function LoginPage({ searchParams }: PageProps<"/login">) {
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
   const { error } = await searchParams;
   const message = typeof error === "string" ? errors[error] : undefined;
 
