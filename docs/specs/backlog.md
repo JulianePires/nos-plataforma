@@ -4,9 +4,6 @@ Itens levantados nas sprints que pertencem a sprints futuras. Cada um tem origem
 
 | Item | Origem | Destino | Onde entra |
 | --- | --- | --- | --- |
-| Alinhar `site_url` e `additional_redirect_urls` do `supabase/config.toml` com `http://localhost:3000` | Review do PR #16 | S1 | NOS-13 (`docs/specs/S1/02-session-publishable-key.md`) |
-| Trocar `NEXT_PUBLIC_SUPABASE_ANON_KEY` pela publishable key (`sb_publishable_…`) | NOS-2 | S1 | NOS-13 |
-| Refresh de sessão do `@supabase/ssr` (no Next 16 é `proxy.ts`, não `middleware.ts`) | NOS-2 | S1 | NOS-13 |
 | Provar o fail-fast do env em produção numa rota dinâmica (hoje só há páginas estáticas) | NOS-2 | S1 | NOS-16 (`docs/specs/S1/05-route-guards.md`) |
 | Rever Vercel Authentication para abrir produção ao público, com domínio próprio | NOS-1 parte 2 (ADR 0004) | S6 | Card de domínio e plano Pro |
 | Playwright no CI | NOS-4 | S6 | Card de E2E |
