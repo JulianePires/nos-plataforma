@@ -8,7 +8,6 @@ Itens levantados nas sprints que pertencem a sprints futuras. Cada um tem origem
 | Trocar `NEXT_PUBLIC_SUPABASE_ANON_KEY` pela publishable key (`sb_publishable_…`) | NOS-2 | S1 | NOS-13 |
 | Refresh de sessão do `@supabase/ssr` (no Next 16 é `proxy.ts`, não `middleware.ts`) | NOS-2 | S1 | NOS-13 |
 | Provar o fail-fast do env em produção numa rota dinâmica (hoje só há páginas estáticas) | NOS-2 | S1 | NOS-16 (`docs/specs/S1/05-route-guards.md`) |
-| pgTAP no CI (`bunx supabase test db`) | NOS-4 | S1 | NOS-12 (`docs/specs/S1/01-pgtap-ci.md`) |
 | Rever Vercel Authentication para abrir produção ao público, com domínio próprio | NOS-1 parte 2 (ADR 0004) | S6 | Card de domínio e plano Pro |
 | Playwright no CI | NOS-4 | S6 | Card de E2E |
 | Voltar a um TypeScript só quando o typescript-eslint suportar o tsgo | ADR 0005 | S2 (planejamento) | Checado em 11/11/2026: o typescript-eslint ainda exige `typescript <6.1`. Alternativa a avaliar: oxlint com `oxlint-tsgolint`, que roda sobre o TS 7.0.2 e cobre 59 das 61 regras type-aware. Checar de novo no planejamento da S2 |
