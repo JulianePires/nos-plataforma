@@ -12,6 +12,8 @@ Itens levantados nas sprints que pertencem a sprints futuras. Cada um tem origem
 | SMTP próprio no Supabase (Resend, Brevo ou similar): o SMTP padrão só entrega para o time do projeto e tem limite de 2 e-mails por hora | Planejamento da S1 | S2 | Antes do card de convite de cliente; ligar no `nos-prod` e citar no ADR 0010 |
 | Equipe lendo perfis de clientes (função `is_staff()` ou equivalente para RLS) | NOS-14 | S2 | Card de `project_members` |
 | Login com Google para a equipe | NOS-18 | S2 | Spec `docs/specs/S1/07-google-login.md`; movido da S1 para abrir espaço para o NOS-19 e o NOS-20 |
+| Aviso de limite de envio no login sem revelar quem é usuário (hoje todo erro do `signInWithOtp` vira a mensagem neutra, porque o limite de frequência por usuário só atinge e-mails cadastrados) | NOS-15 | S2 | Junto do SMTP próprio; avaliar captcha ou limite por IP no app |
+| Landing da Nós em `/` (serviços, processo, cases, contato que vira solicitação) com entrada para cliente e equipe; substitui a raiz provisória do NOS-16 | Pedido da Ju (12/11) | S6 | Card no Notion; textos e fotos são um card de negócio na S5 |
 | Sentry e Grafana Cloud como operadores na política de privacidade | ADR 0011 | S6 | Card de termos de uso e LGPD |
 | Portal lista projetos em execução e executados; `project_links.kind` (production, domain, infra, repository, documentation, design, staging) e `internal` para painéis sensíveis | Pedido da Ju (12/11) | S3 | Cards de links e de visão geral do portal |
 | Tabela `sprints` por projeto, `backlog_items.sprint_id` e visão das sprints no portal | Pedido da Ju (12/11) | S4 | Card de backlog |

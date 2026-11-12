@@ -22,7 +22,14 @@ A plataforma tem dois públicos: a equipe da Nós, no console, e os clientes, no
 - Cada layout protegido faz uma consulta a `profiles`. Se pesar, o papel vai para custom claims num ADR novo.
 - O trigger roda como `security definer` no schema `private`, fora da API; qualquer mudança nele precisa manter o `search_path` vazio.
 
+## Adendo · Magic link e allow-list de redirect (NOS-15, 2026-11-12)
+- **Link do e-mail:** o template usa `{{ .RedirectTo }}/auth/confirm?token_hash=…&type=email`, e o app manda a origem do request em `emailRedirectTo`. Assim o link de um preview volta ao próprio preview. Com `{{ .SiteURL }}`, ele abriria a sessão em produção.
+- **A allow-list é a fronteira de segurança.** A publishable key é pública: qualquer pessoa pode chamar `/auth/v1/otp` com o e-mail de outra e escolher o `redirect_to`. Se a lista aceitar um domínio de terceiros, o token da vítima vai para esse domínio.
+- **Regra para Auth → URL Configuration → Redirect URLs do `nos-prod`:** só o domínio de produção e URLs de preview fixas (alias de branch ou domínio próprio). Nunca curinga em `vercel.app`, nem `*-<slug>.vercel.app`, porque o `*` casa hífens e aceita deploys de outros times. Se precisar de curinga, só num subdomínio nosso.
+- **Sem enumeração de usuários:** `requestMagicLink` responde igual a qualquer erro do Supabase. O limite de frequência por usuário só atinge quem tem conta, então avisar sobre ele revelaria quem é cliente.
+
 ## Fonte
+- https://supabase.com/docs/guides/auth/redirect-urls
 - https://supabase.com/docs/guides/auth/managing-user-data
 - https://supabase.com/docs/guides/database/postgres/row-level-security
 - https://supabase.com/docs/guides/auth/server-side/nextjs
