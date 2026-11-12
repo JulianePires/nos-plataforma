@@ -2,6 +2,7 @@ begin;
 select plan(9);
 
 create table public.probe (id int);
+grant select on public.probe to anon;
 
 select ok(not has_table_privilege('anon', 'public.probe', 'select'), 'anon has no select on a new table');
 select ok(not has_table_privilege('authenticated', 'public.probe', 'select'), 'authenticated has no select on a new table');
