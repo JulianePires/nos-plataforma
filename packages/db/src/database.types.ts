@@ -23,7 +23,21 @@ export type Database = {
           }
         },"public": {
           Tables: {
-            [_ in never]: never
+            "profiles": {
+                  Row: {
+                    "created_at": string,"full_name": string | null,"id": string,"role": Database["public"]['Enums']["app_role"]
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "created_at"?: string,"full_name"?: string | null,"id": string,"role"?: Database["public"]['Enums']["app_role"]
+                  }
+                  Update: {
+                    "created_at"?: string,"full_name"?: string | null,"id"?: string,"role"?: Database["public"]['Enums']["app_role"]
+                  }
+                  Relationships: [
+                    
+                  ]
+                }
           }
           Views: {
             [_ in never]: never
@@ -32,7 +46,7 @@ export type Database = {
             [_ in never]: never
           }
           Enums: {
-            [_ in never]: never
+            "app_role": "admin"|"team"|"client"
           }
           CompositeTypes: {
             [_ in never]: never
@@ -152,7 +166,7 @@ export const Constants = {
           }
         },"public": {
           Enums: {
-            
+            "app_role": ["admin", "team", "client"]
           }
         }
 } as const
