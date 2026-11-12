@@ -1,7 +1,6 @@
 # NOS-18 · Login com Google para a equipe
 
-**Sprint:** S1 · **Estimativa:** 1 h · **Branch:** `feat/s1-google-login`
-**Primeiro card a cortar** se a sprint apertar (plano de implementação). Se cortar, vai para o backlog com destino S2.
+**Sprint:** S2 (movido da S1 em 12/11 para abrir espaço para a observabilidade) · **Estimativa:** 1 h · **Branch:** `feat/s2-google-login`
 
 ## Objetivo
 A equipe entra com a conta Google. Quem entra pelo Google sem ter sido promovido continua `client` e cai no portal.

@@ -1,6 +1,8 @@
 # S1 · Sessões (16 a 22 de novembro) · Acesso
 
-A S1 entrega o acesso: sessão, perfis, login sem senha, a regra de quem entra em cada área e o layout base. São 7 cards, cerca de 10,5 h, em 3 sessões. A ordem segue as dependências: CI do banco → sessão → perfis → login → acesso → layout → Google. O card 07 (Google) é o primeiro a cortar se a semana apertar.
+A S1 entrega o acesso e a observabilidade: sessão, perfis, login sem senha, a regra de quem entra em cada área, o layout base, erros e traces no Sentry e métricas no Grafana Cloud. São 8 cards, cerca de 13,5 h, em 3 sessões. A ordem segue as dependências: CI do banco → sessão → Sentry → perfis → login → acesso → layout → métricas.
+
+O login com Google (NOS-18) saiu para a S2 para abrir espaço para a observabilidade. Mesmo assim a sprint passa das 10 h: se apertar, o NOS-20 (métricas) é o próximo a ir para a S2. O Sentry fica, porque é ele que mostra os erros em produção.
 
 Ciclo de cada card, igual ao da S0: `/card` → você aprova → `/tdd` → `/review` → `/pr`. Entre cards, `/clear`.
 
@@ -12,17 +14,20 @@ Ciclo de cada card, igual ao da S0: `/card` → você aprova → `/tdd` → `/re
 | NOS-15 · Login por magic link e logout | `docs/specs/S1/04-magic-link-login.md` | 2 |
 | NOS-16 · Acesso por área | `docs/specs/S1/05-route-guards.md` | 1,5 |
 | NOS-17 · Layout base | `docs/specs/S1/06-app-shell.md` | 2 |
-| NOS-18 · Login com Google (equipe) | `docs/specs/S1/07-google-login.md` | 1 |
+| NOS-19 · Sentry: erros, traces e logs | `docs/specs/S1/08-sentry.md` | 2 |
+| NOS-20 · Métricas OpenTelemetry no Grafana Cloud | `docs/specs/S1/09-otel-metrics.md` | 2 |
+| ~~NOS-18 · Login com Google~~ (movido para a S2) | `docs/specs/S1/07-google-login.md` | — |
 
 ## Antes da sessão 1 (você, fora do repo)
 - [ ] Copiar a publishable key do `nos-prod` (Settings → API Keys) e criar `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` na Vercel em Production e Preview. A `ANON_KEY` só sai depois do merge do NOS-13.
 - [ ] No `nos-prod`, Auth → URL Configuration: Site URL de produção e `https://*-<seu-time>.vercel.app/**` nos redirects.
 - [ ] No `.env.local`, trocar `NEXT_PUBLIC_SUPABASE_ANON_KEY` por `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` com o valor do `bunx supabase status` (local).
-- [ ] Para o card 07: criar o cliente OAuth no Google Cloud (os dois redirects estão na spec) e guardar o client id e o secret no `.env.local`.
+- [ ] Para o NOS-19: criar a conta gratuita do Sentry (plano Developer, **sem cadastrar cartão**), o projeto Next.js `nos-plataforma` e um token de organização para o upload de source maps. Na Vercel: `NEXT_PUBLIC_SENTRY_DSN` (Production e Preview) e `SENTRY_AUTH_TOKEN`, `SENTRY_ORG`, `SENTRY_PROJECT` (só build, Production e Preview).
+- [ ] Para o NOS-20: criar a stack gratuita do Grafana Cloud (**sem cartão**), gerar o token de OTLP e criar na Vercel `OTEL_EXPORTER_OTLP_ENDPOINT` e `OTEL_EXPORTER_OTLP_HEADERS` (Production e Preview, secretas). Passo a passo no card "Contas e chaves de observabilidade" do Notion.
 
 ---
 
-## Sessão 1 · CI do banco e sessão (≈ 2,5 h)
+## Sessão 1 · CI do banco, sessão e Sentry (≈ 4,5 h)
 
 **Planejamento da sprint** (só desta vez, antes do primeiro card):
 ```text
@@ -48,6 +53,20 @@ Depois do merge: marque `db` como check obrigatório na `main`.
 Se ele quiser redirecionar no proxy:
 ```text
 Proxy só renova sessão. Autorização fica nos layouts (card 05), conforme a spec. Remova o redirect.
+```
+
+**Card 08 · Sentry**
+```text
+/clear
+/card docs/specs/S1/08-sentry.md
+```
+Para provar o envio sem deixar rota de teste na `main`:
+```text
+Crie uma branch descartável a partir da sua branch do card com um botão que lança erro no cliente e um Server Component que lança no servidor. Abra uma PR de rascunho, espere o preview, dispare os dois erros, me mostre os links dos eventos no Sentry (com stack trace original) e depois feche a PR e apague a branch.
+```
+Se ele sugerir mandar e-mail ou nome do usuário para o Sentry:
+```text
+Só o id do Supabase. Sem PII, conforme a spec e o ADR 0011.
 ```
 
 ---
@@ -81,7 +100,7 @@ Depois do merge (você): colar o template `supabase/templates/magic-link.html` n
 
 ---
 
-## Sessão 3 · Acesso, layout e Google (≈ 4,5 h)
+## Sessão 3 · Acesso, layout e métricas (≈ 5,5 h)
 
 **Card 05 · Acesso por área**
 ```text
@@ -103,14 +122,22 @@ Se quiser conferir a referência visual sem gastar contexto:
 Não abra o protótipo inteiro. Siga a spec: sidebar de 232 px, marcador lateral no item ativo, gaveta abaixo de 760 px, só tokens do Seixu.
 ```
 
-**Card 07 · Google** (só se sobrar tempo; senão, mova para o backlog com destino S2)
+**Card 09 · Métricas OpenTelemetry** (segundo a cortar; se a semana apertar, vai para a S2)
 ```text
 /clear
-/card docs/specs/S1/07-google-login.md
+/card docs/specs/S1/09-otel-metrics.md
+```
+Se ele quiser usar e-mail, id de usuário ou URL como atributo de métrica:
+```text
+Só valores de conjunto fechado. Cada valor novo vira uma série e o plano gratuito tem 10 mil. Siga a tabela da spec.
+```
+Se ele quiser trocar o tracer do Sentry por um provider OTel próprio:
+```text
+Traces ficam com o Sentry (ADR 0011). Registre só o MeterProvider e confirme no context7 que isso não interfere no setup do Sentry.
 ```
 Para cortar:
 ```text
-Vamos cortar o NOS-18. Adicione ao docs/specs/backlog.md: "Login com Google para a equipe | NOS-18 | S2 | Spec docs/specs/S1/07-google-login.md". Não mexa em código.
+Vamos cortar o NOS-20. Adicione ao docs/specs/backlog.md: "Métricas OpenTelemetry no Grafana Cloud | NOS-20 | S2 | Spec docs/specs/S1/09-otel-metrics.md". Não mexa em código.
 ```
 
 ---
@@ -122,9 +149,11 @@ Vamos cortar o NOS-18. Adicione ao docs/specs/backlog.md: "Login com Google para
 ## Fechamento da sprint
 A S1 só fecha com todos os itens abaixo marcados. O que não for da S1 vai para `docs/specs/backlog.md`, com sprint de destino.
 
-- [ ] Cards 12 a 17 (e 18, se não for cortado) com todos os critérios de aceite marcados
+- [ ] Cards 12 a 17 e 19 (e 20, se não for cortado) com todos os critérios de aceite marcados
+- [ ] Um erro de produção aparece no Sentry com stack trace original, e o alerta de erro novo chega no seu e-mail
+- [ ] Sentry e Grafana Cloud sem cartão cadastrado
 - [ ] Nenhuma PR aberta e nenhuma branch além da `main` (local e remota)
-- [ ] ADR 0010 com status Aceita; ADRs 0004 e 0009 citando a publishable key
+- [ ] ADRs 0010 e 0011 com status Aceita; ADRs 0004 e 0009 citando a publishable key
 - [ ] `main` verde nos jobs `ci` e `db`; deploy de produção `READY`
 - [ ] `bunx supabase db reset && bunx supabase test db` verdes; `nos-prod` com as mesmas migrations do local
 - [ ] Você entra no preview e na produção pelo magic link, como `admin`, e cai no console
