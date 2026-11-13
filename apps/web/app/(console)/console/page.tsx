@@ -1,5 +1,5 @@
 import { Button } from "@nos/seixu";
-import { signOut } from "../../features/auth/actions";
+import { signOut } from "../../../features/auth/actions";
 
 export default function Home() {
   return (

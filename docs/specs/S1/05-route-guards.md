@@ -27,7 +27,9 @@ Cada grupo de rota decide quem entra: o console (`/console`) é da equipe, o por
 - `(console)/layout.tsx` e `(portal)/layout.tsx` chamam `getCurrentUser()` e `resolveAccess`, e fazem `redirect` quando preciso. Os layouts ficam dinâmicos.
 - Login com sessão ativa manda para `/console` (equipe) ou `/portal` (cliente).
 - **Console em `/console`:** mover `app/(console)/page.tsx` para `app/(console)/console/page.tsx` e `app/(console)/seixu/` para `app/(console)/console/seixu/`. O layout do grupo continua em `app/(console)/layout.tsx`.
-- `homeFor(role)` em `access.ts`: `/console` para `team` e `admin`, `/portal` para `client`. Sem `next`, o redirect depois do login usa `homeFor` em vez de `/` (ajuste no `safeNext` e no `/auth/confirm` do card 04).
+- `homeFor(role)` em `access.ts`: `/console` para `team` e `admin`, `/portal` para `client`. Sem `next`, o redirect depois do login usa `homeFor` em vez de `/` (decidido na implementação: o `safeNext` continua devolvendo `/` e a raiz provisória manda para `homeFor`, então o `/auth/confirm` não precisa ler o profile).
+- **`next` pelo magic link (decidido na implementação):** o link do e-mail só leva a origem (`{{ .RedirectTo }}`), então o proxy guarda o `next` seguro de `/login?next=…` num cookie `httpOnly` de 1 h com `path=/auth/confirm`, e o `/auth/confirm` usa e apaga o cookie. Em outro aparelho, o usuário cai na casa do papel.
+- **Caminho para os layouts:** o proxy repassa `x-pathname` como header de request (sempre sobrescrito, então o valor do cliente nunca chega ao servidor).
 - **Raiz provisória** `app/(public)/page.tsx`: sem sessão → `/login`; com sessão → `homeFor(role)`. A landing (S6) substitui esta página sem mudar o resto.
 - Origem: backlog, "provar o fail-fast do env numa rota dinâmica". Os layouts dinâmicos são essa rota.
 
@@ -94,7 +96,7 @@ Funcionalidade: Cada um na sua área
 | Destino sem `next` | unit | `apps/web/features/auth/safe-next.test.ts` |
 | `getCurrentUser` sem sessão e com sessão | unit com cliente mockado | `apps/web/features/auth/queries.test.ts` |
 | Cliente no console, volta após login | manual, evidência no PR (E2E na S6) | — |
-| Fail-fast em produção | `next build && next start` sem a variável, evidência no PR | — |
+| Fail-fast em produção | `next build` sem a variável: o build falha citando a variável, antes do deploy (a variável `NEXT_PUBLIC_*` é embutida no build, então não dá para tirá-la só no `next start`). Evidência no PR | — |
 
 ## Limites
-- Até 16 arquivos (os moves contam). Nenhuma dependência nova.
+- Até 19 arquivos (os moves contam; +1 pelo adendo ao ADR 0010, que registra o cookie do `next` e o `x-pathname`; +2 pela correção de open redirect no `safeNext`, aberta pelo cookie do `next`). Nenhuma dependência nova.
