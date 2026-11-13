@@ -58,7 +58,7 @@ function Section({
 
 export default function SeixuPage() {
   return (
-    <main className="mx-auto flex max-w-5xl flex-col gap-8 p-8">
+    <div className="flex flex-col gap-8">
       <header className="flex flex-col gap-2">
         <h1 className="text-3xl font-semibold">Seixu</h1>
         <p className="text-text-muted">
@@ -82,7 +82,10 @@ export default function SeixuPage() {
       <Section title="Tipografia">
         <ul className="flex flex-col gap-2">
           {typeScale.map((size) => (
-            <li key={size} className="flex items-baseline gap-4">
+            <li
+              key={size}
+              className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-4"
+            >
               <code className="w-24 shrink-0 font-mono text-xs text-text-muted">
                 {size}
               </code>
@@ -144,6 +147,6 @@ export default function SeixuPage() {
           <Input label="Desabilitado" disabled defaultValue="Somente leitura" />
         </div>
       </Section>
-    </main>
+    </div>
   );
 }

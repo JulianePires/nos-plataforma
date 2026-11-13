@@ -1,7 +1,3 @@
 export default function PortalHome() {
-  return (
-    <main>
-      <h1>Nós Portal</h1>
-    </main>
-  );
+  return <h1 className="text-2xl font-semibold">Seus projetos</h1>;
 }
