@@ -9,6 +9,7 @@ Mapa de "o que ler para cada tarefa". Funciona como o RAG do projeto: o Claude c
 | Rotas e páginas | `apps/web/app/**/layout.tsx` do grupo afetado | next.js (app router) |
 | Env e clientes Supabase | `apps/web/lib/env.ts`, `apps/web/lib/supabase/`, `apps/web/instrumentation.ts`, `apps/web/proxy.ts`, `supabase/config.toml` (`[auth.email]`), `supabase/templates/` | supabase ssr, zod |
 | Feature de um módulo | `apps/web/features/<módulo>/` | next.js server actions, zod |
+| Shell do console e do portal | `apps/web/components/shell/`, `apps/web/app/(console)/layout.tsx`, `apps/web/app/(portal)/layout.tsx` | next.js (usePathname, Link), testing library |
 | Banco, migrations, RLS | `supabase/migrations/` (só as últimas 2), `supabase/tests/`, `docs/adr/0007-explicit-data-api-grants.md` | supabase rls, pgtap |
 | Tipos do banco | `packages/db/src/database.types.ts` (gerado, leia só a tabela) | supabase cli gen types |
 | UI e tokens | `packages/seixu/src/tokens.css`, `packages/seixu/README.md` | tailwindcss v4 |
