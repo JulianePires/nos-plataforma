@@ -34,7 +34,7 @@ Funcionalidade: Equipe entra com Google
   Cenário: Equipe promovida
     Dado um usuário Google com papel "team"
     Quando ele entra pelo Google
-    Então ele chega em "/"
+    Então ele chega em "/console"
 
   Cenário: Callback sem código
     Quando "/auth/callback" é aberto sem "code"
@@ -42,7 +42,7 @@ Funcionalidade: Equipe entra com Google
 
   Cenário: Callback com next externo
     Quando o callback chega com "next=https://site-externo.com"
-    Então o redirect vai para "/"
+    Então o redirect vai para a casa do papel ("/console" ou "/portal")
 ```
 
 ## Critérios de aceite

@@ -157,7 +157,7 @@ A S1 só fecha com todos os itens abaixo marcados. O que não for da S1 vai para
 - [ ] `main` verde nos jobs `ci` e `db`; deploy de produção `READY`
 - [ ] `bunx supabase db reset && bunx supabase test db` verdes; `nos-prod` com as mesmas migrations do local
 - [ ] Você entra no preview e na produção pelo magic link, como `admin`, e cai no console
-- [ ] `cliente@nos.local` (local) não abre `/seixu`
+- [ ] `cliente@nos.local` (local) não abre `/console/seixu`
 - [ ] `CLAUDE.md`, `README.md` e `docs/context/INDEX.md` citam `features/auth`, `components/shell`, `proxy.ts` e a publishable key
 
 ```text

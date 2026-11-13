@@ -15,7 +15,7 @@ O console tem sidebar, topbar e gaveta no celular, com o nome de quem está loga
 
 ## Requisitos
 - `apps/web/components/shell/`: `console-shell.tsx` (sidebar 232 px no desktop; topbar + gaveta abaixo de 760 px), `portal-header.tsx`, `user-menu.tsx` (nome + "Sair").
-- Navegação do console só com rotas que existem: **Início** (`/`) e **Seixu** (`/seixu`), num grupo "Sistema". Projetos entra na S2, junto com a rota. Nada de item desabilitado "em breve".
+- Navegação do console só com rotas que existem: **Início** (`/console`) e **Seixu** (`/console/seixu`), num grupo "Sistema". Projetos entra na S2, junto com a rota. Nada de item desabilitado "em breve".
 - Item ativo com `aria-current="page"` e o marcador lateral do protótipo.
 - Gaveta: botão com `aria-expanded` e `aria-controls`; fecha com Esc, com clique fora e ao navegar; o foco volta para o botão ao fechar.
 - Só tokens do Seixu, sem cor literal. Componentes nascem em `apps/web`; sobem para o Seixu quando estabilizarem (S17 no plano).
@@ -30,7 +30,7 @@ O console tem sidebar, topbar e gaveta no celular, com o nome de quem está loga
 Funcionalidade: Navegar pelo console
 
   Cenário: Item ativo marcado
-    Dado que estou em "/seixu"
+    Dado que estou em "/console/seixu"
     Então o link "Seixu" tem aria-current="page"
     E o link "Início" não tem
 
