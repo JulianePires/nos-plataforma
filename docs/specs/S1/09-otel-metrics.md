@@ -45,7 +45,7 @@ Funcionalidade: Métricas do produto em produção
     Então "nos.auth.login" com method "magic_link" e result "success" aumenta em 1 no Grafana
 
   Cenário: Acesso negado por papel
-    Quando "cliente@nos.local" abre "/seixu"
+    Quando "cliente@nos.local" abre "/console/seixu"
     Então "nos.access.denied" com area "console" e reason "role" aumenta em 1
 
   Cenário: Pedido de link com e-mail inválido
