@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
+import { homeFor } from "../../../features/auth/access";
 import { LoginForm } from "../../../features/auth/components/login-form";
+import { getCurrentUser } from "../../../features/auth/queries";
 
 export const metadata: Metadata = {
   title: "Entrar · Nós",
@@ -14,7 +17,9 @@ export default async function LoginPage({
 }: {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const { error } = await searchParams;
+  const [user, { error }] = await Promise.all([getCurrentUser(), searchParams]);
+  if (user) redirect(homeFor(user.role));
+
   const message = typeof error === "string" ? errors[error] : undefined;
 
   return (

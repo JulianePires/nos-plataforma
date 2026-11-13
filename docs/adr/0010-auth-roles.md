@@ -28,7 +28,14 @@ A plataforma tem dois públicos: a equipe da Nós, no console, e os clientes, no
 - **Regra para Auth → URL Configuration → Redirect URLs do `nos-prod`:** só o domínio de produção e URLs de preview fixas (alias de branch ou domínio próprio). Nunca curinga em `vercel.app`, nem `*-<slug>.vercel.app`, porque o `*` casa hífens e aceita deploys de outros times. Se precisar de curinga, só num subdomínio nosso.
 - **Sem enumeração de usuários:** `requestMagicLink` responde igual a qualquer erro do Supabase. O limite de frequência por usuário só atinge quem tem conta, então avisar sobre ele revelaria quem é cliente.
 
+## Adendo · Guardas de área (NOS-16, 2026-11-12)
+- **Uma regra só:** `resolveAccess` em `features/auth/access.ts` decide quem entra em cada área. Os layouts de `(console)` e `(portal)` só a aplicam. O proxy não decide acesso.
+- **Caminho pedido:** layout não enxerga a URL, então o proxy repassa `x-pathname` como header de request. O proxy sempre sobrescreve esse header, então um valor mandado pelo cliente não chega ao servidor. Ele só vira o `next` do login, e o `safeNext` filtra o `next` de novo.
+- **`safeNext` resolve a URL como o navegador:** ele descarta tab e quebra de linha e lê `\` como `/`, então `next=/%09/evil.example` chega decodificado com um tab e viraria `//evil.example`. O destino só passa se a URL resolvida continuar na mesma origem e fora de `/auth/`, comparado já decodificado e sem diferenciar maiúsculas: um `/auth/confirm` plantado faria a vítima entrar na conta do atacante.
+- **Destino depois do magic link:** o proxy guarda o `next` de `/login?next=…` num cookie `httpOnly`, `SameSite=Lax`, de 1 h (o mesmo `otp_expiry`) e restrito a `/auth/confirm`. O `/auth/confirm` usa o cookie e o apaga. Foi escolhido em vez de pôr o `next` na URL do e-mail, que obrigaria a mudar o template e dependeria da allow-list aceitar caminho e query.
+
 ## Fonte
+- https://nextjs.org/docs/app/api-reference/functions/next-response
 - https://supabase.com/docs/guides/auth/redirect-urls
 - https://supabase.com/docs/guides/auth/managing-user-data
 - https://supabase.com/docs/guides/database/postgres/row-level-security

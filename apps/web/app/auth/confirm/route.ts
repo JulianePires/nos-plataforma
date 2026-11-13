@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { safeNext } from "../../../features/auth/safe-next";
+import { NEXT_COOKIE, NEXT_COOKIE_PATH } from "../../../lib/supabase/proxy";
 import { createClient } from "../../../lib/supabase/server";
 
 export async function GET(request: NextRequest) {
@@ -15,8 +16,14 @@ export async function GET(request: NextRequest) {
     });
 
     if (!error) {
-      const next = safeNext(searchParams.get("next"));
-      return NextResponse.redirect(new URL(next, request.url));
+      const next = safeNext(
+        searchParams.get("next") ??
+          request.cookies.get(NEXT_COOKIE)?.value ??
+          null,
+      );
+      const response = NextResponse.redirect(new URL(next, request.url));
+      response.cookies.delete({ name: NEXT_COOKIE, path: NEXT_COOKIE_PATH });
+      return response;
     }
   }
 

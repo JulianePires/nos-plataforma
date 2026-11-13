@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { NEXT_COOKIE } from "../../../lib/supabase/proxy";
 import { GET } from "./route";
 
 const auth = vi.hoisted(() => ({
@@ -10,8 +11,12 @@ vi.mock("../../../lib/supabase/server", () => ({
   createClient: () => Promise.resolve({ auth }),
 }));
 
-function confirm(query: string) {
-  return GET(new NextRequest(`https://app.nos.dev/auth/confirm?${query}`));
+function confirm(query: string, cookie?: string) {
+  return GET(
+    new NextRequest(`https://app.nos.dev/auth/confirm?${query}`, {
+      headers: cookie ? { cookie: `${NEXT_COOKIE}=${cookie}` } : {},
+    }),
+  );
 }
 
 beforeEach(() => {
@@ -68,4 +73,39 @@ describe("GET /auth/confirm", () => {
       );
     },
   );
+});
+
+describe("GET /auth/confirm with the remembered next", () => {
+  it("returns to the page the user asked for and clears the cookie", async () => {
+    const response = await confirm(
+      "token_hash=abc&type=email",
+      "/console/seixu",
+    );
+
+    expect(response.headers.get("location")).toBe(
+      "https://app.nos.dev/console/seixu",
+    );
+    expect(response.cookies.get(NEXT_COOKIE)).toMatchObject({
+      value: "",
+      path: "/auth/confirm",
+    });
+  });
+
+  it("prefers the next in the link over the cookie", async () => {
+    const response = await confirm(
+      "token_hash=abc&type=email&next=/portal",
+      "/console",
+    );
+
+    expect(response.headers.get("location")).toBe("https://app.nos.dev/portal");
+  });
+
+  it("never follows an unsafe cookie", async () => {
+    const response = await confirm(
+      "token_hash=abc&type=email",
+      "//evil.example",
+    );
+
+    expect(response.headers.get("location")).toBe("https://app.nos.dev/");
+  });
 });
